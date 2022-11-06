@@ -5,9 +5,9 @@ import classes from './Footer.module.scss';
 function Footer(): JSX.Element {
   const { footer } = classes;
   return (
-    <div className={footer}>
+    <footer className={footer}>
       <Logo />
-    </div>
+    </footer>
   );
 }
 

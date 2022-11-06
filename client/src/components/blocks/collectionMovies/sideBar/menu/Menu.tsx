@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import classes from './Menu.module.scss';
 import MenuItem, { IMenuItem } from './menuItem';
+import classes from './Menu.module.scss';
 
 interface MenuProps {
   menuItems: IMenuItem[];

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import RadioDropdownItem from './radioDropdownItem';
 import { joinClasses } from '../../../../../helpers';
 import classes from './RadioDropdown.module.scss';
-import RadioDropdownItem from './radioDropdownItem';
 
 interface DropdownProps {
   radioDropdownItems: string[];

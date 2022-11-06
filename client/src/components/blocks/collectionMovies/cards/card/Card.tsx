@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
-import { Heading } from '../../../../ui';
-import { CLASSNAME_H3 } from '../../../../ui/heading/consts';
-import classes from './Card.module.scss';
+import { Heading, CLASSNAME_H3 } from '../../../../ui';
 import { ICard } from './models';
+import classes from './Card.module.scss';
 
 interface CardProps {
   data: ICard;

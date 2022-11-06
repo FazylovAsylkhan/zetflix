@@ -3,8 +3,8 @@ import {
   Heading,
   Input,
   Button,
-  CLASSNAME_H2,
   BUTTON_TYPE_SUBMIT,
+  CLASSNAME_H2,
   CLASSNAME_PRIMARY,
 } from '../../../ui';
 import classes from './SearchForm.module.scss';

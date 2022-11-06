@@ -1,6 +1,5 @@
 import React from 'react';
-import Menu from './menu';
-import { IMenuItem } from './menu/menuItem/models';
+import Menu, { IMenuItem } from './menu';
 import RadioDropdown from './radioDropdown';
 import classes from './SideBar.module.scss';
 
