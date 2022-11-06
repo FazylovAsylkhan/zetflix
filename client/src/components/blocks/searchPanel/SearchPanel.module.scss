@@ -1,0 +1,14 @@
+.searchPanel {
+  height: 400px;
+  position: relative;
+}
+.background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('../../../assets/images/preview.jpg') center center/cover;
+  background-repeat: no-repeat;
+}

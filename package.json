@@ -4,10 +4,10 @@
   "description": "zetflix app",
   "private": true,
   "scripts": {
-    "start-zetflix": "webpack serve --config client/webpack.config.js",
-    "build-zetflix": "webpack --config client/webpack.config.js --node-env=production",
-    "watch-zetflix": "webpack --config client/webpack.config.js --watch",
-    "stats-zetflix": "webpack --config client/webpack.config.js --profile --json > stats.json",
+    "start-client": "webpack serve --config client/webpack.config.js",
+    "build-client": "webpack --config client/webpack.config.js --node-env=production",
+    "watch-client": "webpack --config client/webpack.config.js --watch",
+    "stats-client": "webpack --config client/webpack.config.js --profile --json > stats.json",
     "formate": "prettier --write client/src/**/*.*",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"

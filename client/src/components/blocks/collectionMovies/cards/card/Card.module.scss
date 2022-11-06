@@ -1,0 +1,28 @@
+.card {
+}
+.img {
+  margin-bottom: 20px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.digits {
+  text-align: right;
+  padding: 4px 8px;
+  opacity: 0.5;
+  border: 1px solid #979797;
+  border-radius: 4px;
+}
+
+.genre {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  opacity: 0.5;
+}

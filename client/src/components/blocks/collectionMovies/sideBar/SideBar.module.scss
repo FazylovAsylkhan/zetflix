@@ -1,0 +1,26 @@
+.sideBar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 24px;
+  &::after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #080707;
+  }
+  &::before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid #424242;
+  }
+}

@@ -7,9 +7,14 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const source = path.resolve(__dirname, 'src');
+const outputPath = path.resolve(__dirname, 'build');
 const handlerStyle = isProduction
   ? MiniCssExtractPlugin.loader
   : 'style-loader';
+const fileNameOfScssModules = isProduction
+  ? '[hash:base64:8]'
+  : '[folder]_[local]__[hash:base64:2]';
 
 const config = {
   context: __dirname,
@@ -17,7 +22,7 @@ const config = {
     index: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: outputPath,
     clean: true,
   },
   resolve: {
@@ -32,16 +37,12 @@ const config = {
     rules: [
       {
         test: /\.(ts|tsx)$/i,
-        exclude: /node_modules/,
+        include: source,
         use: [
           {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-              exclude: [
-                /node_modules[\\/]core-js/,
-                /node_modules[\\/]webpack[\\/]buildin/,
-              ],
             },
           },
           'ts-loader',
@@ -54,7 +55,10 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              importLoaders: 2,
+              modules: {
+                localIdentName: fileNameOfScssModules,
+              },
             },
           },
           {
