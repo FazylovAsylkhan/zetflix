@@ -27,8 +27,4 @@ function Heading({
   }
 }
 
-Heading.defaultProps = {
-  parentClasses: '',
-};
-
 export default Heading;

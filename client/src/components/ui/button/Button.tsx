@@ -18,16 +18,10 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   parentClasses?: string;
 }
 
-const defaultProps = {
-  parentClasses: '',
-  stylesType: CLASSNAME_PRIMARY,
-  type: BUTTON_TYPE_BUTTON,
-};
-
 function Button({
   children,
   onClick,
-  parentClasses,
+  parentClasses = '',
   type = BUTTON_TYPE_BUTTON,
   stylesType = CLASSNAME_PRIMARY,
 }: ButtonProps): JSX.Element {
@@ -45,7 +39,5 @@ function Button({
     </button>
   );
 }
-
-Button.defaultProps = defaultProps;
 
 export default Button;

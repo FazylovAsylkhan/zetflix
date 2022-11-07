@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from '../../../../../../helpers';
+import { joinClasses } from '../../../../helpers';
 import { IMenuItem } from './models';
 import classes from './MenuItem.module.scss';
 

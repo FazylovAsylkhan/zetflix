@@ -59,7 +59,7 @@ export const menuItems = [
   { isActive: false, value: 'crime' },
 ];
 
-export const radioDropdownItems = [
+export const selectOptions = [
   'release date',
   'popularity',
   'random',

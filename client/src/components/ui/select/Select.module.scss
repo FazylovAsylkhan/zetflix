@@ -1,29 +1,14 @@
-.radioDropdown {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 270px;
+.selectForm {
   position: relative;
-  & > span {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.888889px;
-    text-transform: uppercase;
-    color: #ffffff;
-    mix-blend-mode: normal;
-    opacity: 0.6;
-  }
 }
-
-.list {
+.options {
   position: absolute;
   top: 30px;
   left: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
   background: rgba(35, 35, 35, 0.918051);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.1),
     0px 10px 20px rgba(0, 0, 0, 0.1), 0px 10px 50px rgba(0, 0, 0, 0.1);
@@ -31,10 +16,10 @@
   border-radius: 4px;
 }
 
-.selector {
+.openedSelector,
+.closedSelector {
   position: relative;
-  margin-left: 30px;
-  padding-right: 24px;
+  padding: 0 30px;
   background-color: transparent;
   color: #ffffff;
   font-weight: 500;
@@ -55,7 +40,7 @@
   }
 }
 
-.active {
+.closedSelector {
   &::before {
     top: 40%;
     border: 7px solid transparent;
