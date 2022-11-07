@@ -1,6 +1,8 @@
 import Button from './button';
 import Heading from './heading';
 import Input from './input';
+import Select from './select';
+import Menu, { IMenuItem } from './menu';
 
 export {
   CLASSNAME_PRIMARY,
@@ -11,5 +13,6 @@ export {
 } from './button/consts';
 
 export { CLASSNAME_H2, CLASSNAME_H3, CLASSNAME_H4 } from './heading/consts';
+export type { IMenuItem };
 
-export { Button, Heading, Input };
+export { Button, Heading, Input, Select, Menu };

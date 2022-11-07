@@ -1,23 +1,25 @@
 import React from 'react';
-import Menu, { IMenuItem } from './menu';
-import RadioDropdown from './radioDropdown';
+import { IMenuItem, Menu, Select } from '../../../ui';
 import classes from './SideBar.module.scss';
 
 interface SideBarProps {
   initialMenuItems: IMenuItem[];
-  initialDropdownItems: string[];
+  selectOptions: string[];
 }
 
 function SideBar({
   initialMenuItems,
-  initialDropdownItems,
+  selectOptions,
 }: SideBarProps): JSX.Element {
-  const { sideBar } = classes;
+  const { sideBar, box, selectForms } = classes;
 
   return (
     <div className={sideBar}>
       <Menu menuItems={initialMenuItems} />
-      <RadioDropdown radioDropdownItems={initialDropdownItems} />
+      <div className={box}>
+        <span>Sort by</span>
+        <Select arrOptions={selectOptions} parentClasses={selectForms} />
+      </div>
     </div>
   );
 }

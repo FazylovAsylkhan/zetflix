@@ -1,7 +1,7 @@
 import React from 'react';
 import Cards from './cards';
 import SideBar from './sideBar';
-import { cards, menuItems, radioDropdownItems } from '../../../assets/data';
+import { cards, menuItems, selectOptions } from '../../../assets/data';
 import { Heading, CLASSNAME_H4 } from '../../ui';
 import generalClasses from '../../../scss/style.module.scss';
 import classes from './CollectionMovies.module.scss';
@@ -13,10 +13,7 @@ function CollectionMovies(): JSX.Element {
   return (
     <div className={container}>
       <div className={wrapper}>
-        <SideBar
-          initialMenuItems={menuItems}
-          initialDropdownItems={radioDropdownItems}
-        />
+        <SideBar initialMenuItems={menuItems} selectOptions={selectOptions} />
         <Heading stylesType={CLASSNAME_H4} parentClasses={heading}>
           <span>39</span> movies found
         </Heading>
