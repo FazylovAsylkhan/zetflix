@@ -1,28 +1,21 @@
 import React from 'react';
 import { joinClasses } from '../../../helpers';
 import classes from './Button.module.scss';
-import {
-  BUTTON_TYPE_SUBMIT,
-  BUTTON_TYPE_RESET,
-  BUTTON_TYPE_BUTTON,
-  CLASSNAME_PRIMARY,
-  CLASSNAME_LIGHT,
-} from './consts';
+
+export const CLASSNAME_PRIMARY = 'primary';
+export const CLASSNAME_LIGHT = 'light';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?:
-    | typeof BUTTON_TYPE_SUBMIT
-    | typeof BUTTON_TYPE_RESET
-    | typeof BUTTON_TYPE_BUTTON;
+  type?: 'submit' | 'reset' | 'button';
   stylesType?: typeof CLASSNAME_PRIMARY | typeof CLASSNAME_LIGHT;
   parentClasses?: string;
 }
 
-function Button({
+export function Button({
   children,
   onClick,
   parentClasses = '',
-  type = BUTTON_TYPE_BUTTON,
+  type = 'button',
   stylesType = CLASSNAME_PRIMARY,
 }: ButtonProps): JSX.Element {
   const { primary, light } = classes;
@@ -32,12 +25,26 @@ function Button({
     light: joinClasses(parentClasses, light),
   };
 
-  return (
-    // eslint-disable-next-line react/button-has-type
-    <button type={type} className={styles[stylesType]} onClick={onClick}>
-      {children}
-    </button>
-  );
+  switch (type) {
+    case 'button':
+      return (
+        <button type="button" className={styles[stylesType]} onClick={onClick}>
+          {children}
+        </button>
+      );
+    case 'reset':
+      return (
+        <button type="reset" className={styles[stylesType]} onClick={onClick}>
+          {children}
+        </button>
+      );
+    case 'submit':
+      return (
+        <button type="submit" className={styles[stylesType]} onClick={onClick}>
+          {children}
+        </button>
+      );
+    default:
+      throw new Error('Type not found');
+  }
 }
-
-export default Button;

@@ -10,7 +10,7 @@ interface ErrorBoundaryProps extends IDefaultProps {
   children: React.ReactNode;
 }
 
-class ErrorBoundary extends React.Component<
+export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
@@ -43,5 +43,3 @@ class ErrorBoundary extends React.Component<
     return hasError ? ErrorMessage : children;
   }
 }
-
-export default ErrorBoundary;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import MenuItem, { IMenuItem } from './menuItem';
+import { MenuItem, IMenuItem } from './menuItem';
 import classes from './Menu.module.scss';
 
 interface MenuProps {
   menuItems: IMenuItem[];
 }
 
-function Menu({ menuItems }: MenuProps): JSX.Element {
+export function Menu({ menuItems }: MenuProps): JSX.Element {
   const { menu } = classes;
   const [items, setItems] = useState(menuItems);
 

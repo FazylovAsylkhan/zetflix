@@ -1,9 +1,7 @@
 import React from 'react';
-import HomePage from '../pages/home';
+import { HomePage } from '../pages/home';
 import '../../scss/style.module.scss';
 
-function App(): JSX.Element {
+export function App(): JSX.Element {
   return <HomePage />;
 }
-
-export default App;
