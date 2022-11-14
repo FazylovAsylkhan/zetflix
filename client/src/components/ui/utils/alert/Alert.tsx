@@ -25,7 +25,7 @@ export function Alert({
     <div className={alert}>
       <Background />
       <Modal parentClasses={modal}>
-        <ButtonClose handlerClick={handlerButtonClose} />
+        <ButtonClose onClick={handlerButtonClose} />
         <div className={wrapper}>
           <div className={icon} />
           <H2 stylesType="primary">{title}</H2>

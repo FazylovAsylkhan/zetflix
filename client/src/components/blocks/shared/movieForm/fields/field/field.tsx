@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import {
-  INPUT_TEXT,
-  INPUT_DATE,
-  TEXTAREA,
-  DROPDOWN,
-} from '../../../../../../assets/data';
 import { Textarea, Input, Label, Dropdown, InputDate } from '../../../../../ui';
-import { IField } from '../models';
+import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
 import classes from './Field.module.scss';
 
 interface fieldProps {
-  field: IField;
+  data: IField;
 }
 
-export function Field({ field }: fieldProps): JSX.Element {
+export function Field({ data }: fieldProps): JSX.Element {
   const { label } = classes;
-  const { componentType, title, placeholder, initialItems } = field;
+  const { componentType, title, placeholder, initialItems } = data;
   const parentClassname = componentType === TEXTAREA ? label : '';
   const isHadRequiredPropsDropdown =
     placeholder !== undefined && initialItems !== undefined;
@@ -23,17 +17,19 @@ export function Field({ field }: fieldProps): JSX.Element {
 
   const [value, setValue] = useState('');
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChangingInputText = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setValue(e.target.value);
   };
 
-  const handleChangeTextarea = (
+  const handleChangingTextarea = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
     setValue(e.target.value);
   };
 
-  const handleValueSelectedDate = (valueSelectedDate: string): void => {
+  const handleChangingInputDate = (valueSelectedDate: string): void => {
     setValue(valueSelectedDate);
   };
 
@@ -42,7 +38,7 @@ export function Field({ field }: fieldProps): JSX.Element {
       FieldComponent = (
         <Input
           value={value}
-          onChange={handleChangeInput}
+          onChange={handleChangingInputText}
           id={title}
           placeholder={placeholder}
         />
@@ -52,14 +48,14 @@ export function Field({ field }: fieldProps): JSX.Element {
       FieldComponent = (
         <InputDate
           value={value}
-          handlerValueSelectedDate={handleValueSelectedDate}
+          onChange={handleChangingInputDate}
           placeholder={placeholder}
         />
       );
       break;
     case TEXTAREA:
       FieldComponent = (
-        <Textarea value={value} onChange={handleChangeTextarea} id={title} />
+        <Textarea value={value} onChange={handleChangingTextarea} id={title} />
       );
       break;
     case DROPDOWN:

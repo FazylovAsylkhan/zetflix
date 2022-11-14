@@ -24,6 +24,19 @@ export function SelectGroup({
   const [listDays, setListDays] = useState(initialListDays);
   const { d, y } = date;
 
+  const dataDay = {
+    labelText: 'Day:',
+    listOptions: listDays,
+  };
+  const dataMonth = {
+    labelText: 'Month:',
+    listOptions: listMonths,
+  };
+  const dataYear = {
+    labelText: 'Year:',
+    listOptions: listYears,
+  };
+
   const [valueSelectedDay, setValueSelectedDay] = useState(d);
   const [valueSelectedMonth, setValueSelectedMonth] = useState(m);
   const [valueSelectedYear, setValueSelectedYear] = useState(y);
@@ -67,22 +80,19 @@ export function SelectGroup({
   return (
     <div className={selectGroup}>
       <Select
-        label="Day:"
+        data={dataDay}
         value={valueSelectedDay}
-        handlerClick={handleClickSelectDay}
-        arrOptions={listDays}
+        onClick={handleClickSelectDay}
       />
       <Select
-        label="Month:"
+        data={dataMonth}
         value={valueSelectedMonth}
-        handlerClick={handleClickSelectMonth}
-        arrOptions={listMonths}
+        onClick={handleClickSelectMonth}
       />
       <Select
-        label="Year:"
+        data={dataYear}
         value={valueSelectedYear}
-        handlerClick={handleClickSelectYear}
-        arrOptions={listYears}
+        onClick={handleClickSelectYear}
       />
     </div>
   );

@@ -1,62 +1,31 @@
 import React, { useState } from 'react';
 import { Card, ICard } from './card';
 import classes from './Cards.module.scss';
+import { getUpdatedCardsOnClickTooltip, getUpdatedCardsOnHover } from './model';
 
 interface CardsProps {
-  arrCards: ICard[];
+  data: ICard[];
 }
 
-export function Cards({ arrCards }: CardsProps): JSX.Element {
+export function Cards({ data }: CardsProps): JSX.Element {
   const { wrapper } = classes;
-  const [cards, setCards] = useState(arrCards);
+  const [cards, setCards] = useState(data);
 
-  const handleChangingTooltips = (
-    id: number,
-    isShownTooltips: boolean
-  ): void => {
-    const updatedCards = cards.map((card) => {
-      const { isOpenedModalSettings } = card.stateTooltip;
-      let stateTooltip;
-      if (card.id === id) {
-        stateTooltip = {
-          isOpenedModalSettings,
-          isShownTooltips: isOpenedModalSettings ? true : isShownTooltips,
-        };
-      } else {
-        stateTooltip = {
-          isOpenedModalSettings,
-          isShownTooltips: isOpenedModalSettings,
-        };
-      }
-
-      return { ...card, stateTooltip };
-    });
+  const handleHover = (id: number, isShownTooltip: boolean): void => {
+    const updatedCards = getUpdatedCardsOnHover(cards, id, isShownTooltip);
 
     setCards(updatedCards);
   };
 
-  const handleChangingModalSettings = (
+  const handleClickTooltip = (
     id: number,
     isOpenedModalSettings: boolean
   ): void => {
-    const updatedCards = cards.map((card) => {
-      const { isShownTooltips } = card.stateTooltip;
-      let stateTooltip;
-      if (card.id === id) {
-        stateTooltip = {
-          isShownTooltips: isOpenedModalSettings,
-          isOpenedModalSettings,
-        };
-      } else {
-        stateTooltip = {
-          isShownTooltips,
-          isOpenedModalSettings: false,
-        };
-      }
-
-      return { ...card, stateTooltip };
-    });
-
+    const updatedCards = getUpdatedCardsOnClickTooltip(
+      cards,
+      id,
+      isOpenedModalSettings
+    );
     setCards(updatedCards);
   };
 
@@ -67,8 +36,8 @@ export function Cards({ arrCards }: CardsProps): JSX.Element {
           <Card
             key={card.id}
             data={card}
-            onChangeStateTooltips={handleChangingTooltips}
-            onChangeStateModalSettings={handleChangingModalSettings}
+            onHover={handleHover}
+            onClickTooltip={handleClickTooltip}
           />
         );
       })}

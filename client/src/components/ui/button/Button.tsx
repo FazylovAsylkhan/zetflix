@@ -2,11 +2,17 @@ import React from 'react';
 import { joinClasses } from '../../../helpers';
 import classes from './Button.module.scss';
 
+export const TYPE_BUTTON_BUTTON = 'button';
+export const TYPE_BUTTON_RESET = 'reset';
+export const TYPE_BUTTON_SUBMIT = 'submit';
 export const CLASSNAME_PRIMARY = 'primary';
 export const CLASSNAME_LIGHT = 'light';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?: 'submit' | 'reset' | 'button';
+  type?:
+    | typeof TYPE_BUTTON_BUTTON
+    | typeof TYPE_BUTTON_RESET
+    | typeof TYPE_BUTTON_SUBMIT;
   stylesType?: typeof CLASSNAME_PRIMARY | typeof CLASSNAME_LIGHT;
   parentClasses?: string;
 }
@@ -15,7 +21,7 @@ export function Button({
   children,
   onClick,
   parentClasses = '',
-  type = 'button',
+  type = TYPE_BUTTON_BUTTON,
   stylesType = CLASSNAME_PRIMARY,
 }: ButtonProps): JSX.Element {
   const { primary, light } = classes;
@@ -26,25 +32,34 @@ export function Button({
   };
 
   switch (type) {
-    case 'button':
+    case TYPE_BUTTON_BUTTON:
       return (
-        <button type="button" className={styles[stylesType]} onClick={onClick}>
+        <button
+          type={TYPE_BUTTON_BUTTON}
+          className={styles[stylesType]}
+          onClick={onClick}>
           {children}
         </button>
       );
-    case 'reset':
+    case TYPE_BUTTON_RESET:
       return (
-        <button type="reset" className={styles[stylesType]} onClick={onClick}>
+        <button
+          type={TYPE_BUTTON_RESET}
+          className={styles[stylesType]}
+          onClick={onClick}>
           {children}
         </button>
       );
-    case 'submit':
+    case TYPE_BUTTON_SUBMIT:
       return (
-        <button type="submit" className={styles[stylesType]} onClick={onClick}>
+        <button
+          type={TYPE_BUTTON_SUBMIT}
+          className={styles[stylesType]}
+          onClick={onClick}>
           {children}
         </button>
       );
     default:
-      throw new Error('Type not found');
+      throw new Error('Type button not found');
   }
 }

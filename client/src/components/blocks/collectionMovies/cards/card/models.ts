@@ -4,8 +4,8 @@ export interface ICard {
   date: string;
   image: string;
   stateTooltip: {
-    isShownTooltips: boolean;
-    isOpenedModalSettings: boolean;
+    isShownTooltip: boolean;
+    isShownListOptions: boolean;
   };
   id: number;
 }

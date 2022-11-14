@@ -6,83 +6,68 @@ import { confirmMessage } from '../../../../../assets/data';
 
 interface CardProps {
   data: ICard;
-  onChangeStateTooltips: (id: number, isShownTooltips: boolean) => void;
-  onChangeStateModalSettings: (
-    id: number,
-    isOpenedModalSettings: boolean
-  ) => void;
+  onHover: (id: number, isShownTooltip: boolean) => void;
+  onClickTooltip: (id: number, isOpenedModalSettings: boolean) => void;
 }
 
 export function Card({
   data,
-  onChangeStateTooltips,
-  onChangeStateModalSettings,
+  onHover,
+  onClickTooltip,
 }: CardProps): JSX.Element {
   const { card, box, img, digits, genre } = classes;
   const { title, subtitle, date, image, stateTooltip, id } = data;
-  const { isShownTooltips, isOpenedModalSettings } = stateTooltip;
-  const [isOpenedModalEdit, setIsOpenedModalEdit] = useState(false);
-  const [isOpenedModalDelete, setIsOpenedModalDelete] = useState(false);
+  const { isShownTooltip, isShownListOptions } = stateTooltip;
+  const [isShownPromt, setIsShownPromt] = useState(false);
+  const [isShownConfirm, setIsShownConfirm] = useState(false);
 
-  const handleChangingStateTooltips = (stateTooltips: boolean): void => {
-    onChangeStateTooltips(id, stateTooltips);
+  const setIsShownListOptions = (state: boolean): void => {
+    onClickTooltip(id, state);
   };
 
-  const handleChangingStateModalSettings = (
-    stateModalSettings: boolean
-  ): void => {
-    onChangeStateModalSettings(id, stateModalSettings);
+  const handleClickPrompt = (state: boolean): void => {
+    setIsShownPromt(state);
+    setIsShownListOptions(false);
   };
 
-  const handlerClickButtonEdit = (stateModalEdit: boolean): void => {
-    setIsOpenedModalEdit(stateModalEdit);
-    handleChangingStateModalSettings(false);
-  };
-
-  const handlerClickButtonDelete = (stateModalDelete: boolean): void => {
-    setIsOpenedModalDelete(stateModalDelete);
-    handleChangingStateModalSettings(false);
+  const handleClickConfirm = (state: boolean): void => {
+    setIsShownConfirm(state);
+    setIsShownListOptions(false);
   };
 
   return (
     <>
       <div
         className={card}
-        onMouseLeave={() => handleChangingStateTooltips(false)}>
-        <img
-          alt="preview"
-          src={image}
-          className={img}
-          onMouseOver={() => handleChangingStateTooltips(true)}
-          onMouseLeave={() => handleChangingStateTooltips(false)}
-        />
+        onMouseOver={() => onHover(id, true)}
+        onMouseLeave={() => onHover(id, false)}>
+        <img alt="preview" src={image} className={img} />
         <div className={box}>
           <H3 stylesType="primary">{title}</H3>
           <span className={digits}>{date}</span>
         </div>
         <h3 className={genre}>{subtitle}</h3>
-        {isShownTooltips && (
+        {isShownTooltip && (
           <Tooltip
-            valueStateListOptions={isOpenedModalSettings}
-            onClickButtonEdit={handlerClickButtonEdit}
-            onClickButtonDelete={handlerClickButtonDelete}
-            handlerStateListOptions={handleChangingStateModalSettings}
-            handlerStateTooltip={handleChangingStateTooltips}
+            isShownListOptions={isShownListOptions}
+            setIsShownListOptions={setIsShownListOptions}
+            onClickButtonEdit={handleClickPrompt}
+            onClickButtonDelete={handleClickConfirm}
           />
         )}
       </div>
 
-      {isOpenedModalEdit && (
+      {isShownPromt && (
         <Prompt
           title="Edit movie"
-          handlerButtonClose={() => handlerClickButtonEdit(false)}
+          handlerButtonClose={() => handleClickPrompt(false)}
         />
       )}
 
-      {isOpenedModalDelete && (
+      {isShownConfirm && (
         <Confirm
           message={confirmMessage}
-          handlerButtonClose={() => handlerClickButtonDelete(false)}
+          handlerButtonClose={() => handleClickConfirm(false)}
         />
       )}
     </>

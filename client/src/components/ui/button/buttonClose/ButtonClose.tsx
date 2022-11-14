@@ -4,12 +4,12 @@ import classes from './ButtonClose.module.scss';
 
 interface ButtonCloseProps {
   parentClasses?: string;
-  handlerClick: () => void;
+  onClick: () => void;
 }
 
 export function ButtonClose({
   parentClasses,
-  handlerClick,
+  onClick,
 }: ButtonCloseProps): JSX.Element {
   const { close } = classes;
 
@@ -17,7 +17,7 @@ export function ButtonClose({
     <button
       type="button"
       className={joinClasses(parentClasses, close)}
-      onClick={handlerClick}
+      onClick={onClick}
     />
   );
 }

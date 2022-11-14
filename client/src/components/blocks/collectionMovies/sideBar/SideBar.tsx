@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
-import { IMenuItem, Menu, Select } from '../../../ui';
+import { IMenuItem, Menu, Select, ISelect } from '../../../ui';
 import classes from './SideBar.module.scss';
 
 interface SideBarProps {
-  initialMenuItems: IMenuItem[];
-  selectOptions: string[];
+  menu: IMenuItem[];
+  select: ISelect;
 }
 
-export function SideBar({
-  initialMenuItems,
-  selectOptions,
-}: SideBarProps): JSX.Element {
+export function SideBar({ menu, select }: SideBarProps): JSX.Element {
   const { sideBar, selectForms } = classes;
+  const initialValueSelectedSorting = select.listOptions[0];
 
   const [valueSelectedSorting, setValueSelectedSorting] = useState(
-    selectOptions[0]
+    initialValueSelectedSorting
   );
+
   const handleClickSorting = (valueSelectedOption: string): void => {
     setValueSelectedSorting(valueSelectedOption);
   };
 
   return (
     <div className={sideBar}>
-      <Menu menuItems={initialMenuItems} />
+      <Menu menuItems={menu} />
       <Select
-        label="Sort by"
-        arrOptions={selectOptions}
+        data={select}
         parentClasses={selectForms}
         value={valueSelectedSorting}
-        handlerClick={handleClickSorting}
+        onClick={handleClickSorting}
       />
     </div>
   );

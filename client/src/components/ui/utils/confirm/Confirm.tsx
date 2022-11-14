@@ -25,7 +25,7 @@ export function Confirm({
     <div className={confirm}>
       <Background />
       <Modal parentClasses={modal}>
-        <ButtonClose handlerClick={handlerButtonClose} />
+        <ButtonClose onClick={handlerButtonClose} />
         <H2 stylesType="primary" parentClasses={h2}>
           {title}
         </H2>

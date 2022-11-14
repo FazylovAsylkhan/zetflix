@@ -4,17 +4,15 @@ import { ButtonClose } from '../button';
 import classes from './Tooltip.module.scss';
 
 interface TooltipsProps {
-  valueStateListOptions: boolean;
-  handlerStateTooltip: (state: boolean) => void;
-  handlerStateListOptions: (state: boolean) => void;
+  isShownListOptions: boolean;
+  setIsShownListOptions: (state: boolean) => void;
   onClickButtonEdit: (state: boolean) => void;
   onClickButtonDelete: (state: boolean) => void;
 }
 
 export function Tooltip({
-  handlerStateTooltip,
-  handlerStateListOptions,
-  valueStateListOptions,
+  setIsShownListOptions,
+  isShownListOptions,
   onClickButtonEdit,
   onClickButtonDelete,
 }: TooltipsProps): JSX.Element {
@@ -25,17 +23,14 @@ export function Tooltip({
       <button
         className={tooltips}
         type="button"
-        onMouseOver={() => handlerStateTooltip(true)}
-        onClick={() => handlerStateListOptions(true)}>
+        onClick={() => setIsShownListOptions(true)}>
         <span>...</span>
       </button>
-      {valueStateListOptions && (
-        <Modal
-          onMouseOver={() => handlerStateTooltip(true)}
-          parentClasses={modal}>
+      {isShownListOptions && (
+        <Modal parentClasses={modal}>
           <ButtonClose
             parentClasses={buttonClose}
-            handlerClick={() => handlerStateListOptions(false)}
+            onClick={() => setIsShownListOptions(false)}
           />
           <button
             type="button"

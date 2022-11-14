@@ -11,3 +11,4 @@ export { H2, H3, H4 } from './typography';
 export { Alert, Confirm, Prompt } from './utils';
 
 export type { IMenuItem } from './menu';
+export type { ISelect } from './select';

@@ -5,7 +5,7 @@ import classes from './Header.module.scss';
 
 export function Header(): JSX.Element {
   const { header } = classes;
-  const [isOpenedModal, setIsOpenedModal] = useState(false);
+  const [isShownPrompt, setIsShownPrompt] = useState(false);
 
   return (
     <>
@@ -14,15 +14,15 @@ export function Header(): JSX.Element {
         <Button
           stylesType="light"
           type="button"
-          onClick={() => setIsOpenedModal(!isOpenedModal)}>
+          onClick={() => setIsShownPrompt(!isShownPrompt)}>
           + Add movie
         </Button>
       </header>
 
-      {isOpenedModal && (
+      {isShownPrompt && (
         <Prompt
           title="EDIT MOVIE"
-          handlerButtonClose={() => setIsOpenedModal(false)}
+          handlerButtonClose={() => setIsShownPrompt(false)}
         />
       )}
     </>
