@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import DropdownItem from './dropdownItem';
 import type { IDropdownItem } from './models';
 import { joinClasses } from '../../../helpers';
 import classes from './Dropdown.module.scss';
+import { useCatchingEventOutsideElement } from '../../../hooks';
 
 interface DropdownProps {
   initialItems: IDropdownItem[];
@@ -37,8 +38,13 @@ export function Dropdown({
     setItems(updatedItems);
   };
 
+  const refDropdown = useRef(null);
+  useCatchingEventOutsideElement('mousedown', refDropdown, () =>
+    setIsOpened(false)
+  );
+
   return (
-    <div className={joinClasses(parantClasses, dropdown)}>
+    <div ref={refDropdown} className={joinClasses(parantClasses, dropdown)}>
       <button
         type="button"
         className={stateStyles}

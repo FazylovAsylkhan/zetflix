@@ -2,20 +2,23 @@ import React, { useState } from 'react';
 import { Textarea, Input, Label, Dropdown, InputDate } from '../../../../../ui';
 import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
 import classes from './Field.module.scss';
+import { ICard } from '../../../../collectionMovies/cards/card';
+import { getListCheckedGenres, getInitialState } from './model';
 
 interface fieldProps {
-  data: IField;
+  fieldData: IField;
+  data?: ICard;
 }
 
-export function Field({ data }: fieldProps): JSX.Element {
+export function Field({ fieldData, data }: fieldProps): JSX.Element {
   const { label } = classes;
-  const { componentType, title, placeholder, initialItems } = data;
+  const { componentType, title, placeholder, defaultGenres } = fieldData;
   const parentClassname = componentType === TEXTAREA ? label : '';
-  const isHadRequiredPropsDropdown =
-    placeholder !== undefined && initialItems !== undefined;
-  let FieldComponent = <div />;
 
-  const [value, setValue] = useState('');
+  const initialState =
+    data !== undefined ? getInitialState(data, fieldData) : '';
+
+  const [value, setValue] = useState(initialState);
 
   const handleChangingInputText = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -32,6 +35,8 @@ export function Field({ data }: fieldProps): JSX.Element {
   const handleChangingInputDate = (valueSelectedDate: string): void => {
     setValue(valueSelectedDate);
   };
+
+  let FieldComponent = <div />;
 
   switch (componentType) {
     case INPUT_TEXT:
@@ -59,9 +64,14 @@ export function Field({ data }: fieldProps): JSX.Element {
       );
       break;
     case DROPDOWN:
-      if (isHadRequiredPropsDropdown) {
+      if (placeholder !== undefined && defaultGenres !== undefined) {
+        const listGenres =
+          data !== undefined
+            ? getListCheckedGenres(data, defaultGenres)
+            : defaultGenres;
+
         FieldComponent = (
-          <Dropdown initialItems={initialItems} defaultValue={placeholder} />
+          <Dropdown initialItems={listGenres} defaultValue={placeholder} />
         );
       } else {
         throw new Error('Required props dropdown not found');

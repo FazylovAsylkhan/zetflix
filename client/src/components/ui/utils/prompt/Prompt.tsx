@@ -6,13 +6,16 @@ import { Alert } from '../alert';
 import { H2 } from '../../typography/h2';
 import { alertMessage } from '../../../../assets/data';
 import classes from './Prompt.module.scss';
+import { ICard } from '../../../blocks/collectionMovies/cards/card';
 
 interface PromptProps {
+  data?: ICard;
   title: string;
   handlerButtonClose: () => void;
 }
 
 export function Prompt({
+  data,
   handlerButtonClose,
   title,
 }: PromptProps): JSX.Element {
@@ -33,7 +36,7 @@ export function Prompt({
             <H2 stylesType="primary" parentClasses={h2}>
               {title}
             </H2>
-            <MovieForm handlerAlert={handleStateAlert} />
+            <MovieForm data={data} handlerAlert={handleStateAlert} />
           </Modal>
         </div>
       )}

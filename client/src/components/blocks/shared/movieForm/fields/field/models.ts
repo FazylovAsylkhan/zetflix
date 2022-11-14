@@ -13,5 +13,5 @@ export interface IField {
     | typeof TEXTAREA
     | typeof DROPDOWN;
   placeholder?: string;
-  initialItems?: IDropdownItem[];
+  defaultGenres?: IDropdownItem[];
 }

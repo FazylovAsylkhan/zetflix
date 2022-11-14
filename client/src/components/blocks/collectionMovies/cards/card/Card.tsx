@@ -3,6 +3,7 @@ import { ICard } from './models';
 import { Tooltip, Prompt, Confirm, H3 } from '../../../../ui';
 import classes from './Card.module.scss';
 import { confirmMessage } from '../../../../../assets/data';
+import { getYear } from '../model';
 
 interface CardProps {
   data: ICard;
@@ -44,7 +45,7 @@ export function Card({
         <img alt="preview" src={image} className={img} />
         <div className={box}>
           <H3 stylesType="primary">{title}</H3>
-          <span className={digits}>{date}</span>
+          <span className={digits}>{getYear(date)}</span>
         </div>
         <h3 className={genre}>{subtitle}</h3>
         {isShownTooltip && (
@@ -59,6 +60,7 @@ export function Card({
 
       {isShownPromt && (
         <Prompt
+          data={data}
           title="Edit movie"
           handlerButtonClose={() => handleClickPrompt(false)}
         />
