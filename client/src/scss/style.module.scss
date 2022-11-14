@@ -1,0 +1,24 @@
+@import './reset.module.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #222222;
+  color: #fbfbfc;
+  letter-spacing: 1px;
+}
+
+.container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 30px;
+  max-width: 1200px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 60px;
+  padding-bottom: 0;
+  grid-column: 1 / 12 span;
+}
