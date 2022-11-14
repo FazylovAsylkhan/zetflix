@@ -8,7 +8,7 @@ interface SideBarProps {
 }
 
 export function SideBar({ menu, select }: SideBarProps): JSX.Element {
-  const { sideBar, selectForms } = classes;
+  const { sideBar } = classes;
   const initialValueSelectedSorting = select.listOptions[0];
 
   const [valueSelectedSorting, setValueSelectedSorting] = useState(
@@ -24,7 +24,6 @@ export function SideBar({ menu, select }: SideBarProps): JSX.Element {
       <Menu menuItems={menu} />
       <Select
         data={select}
-        parentClasses={selectForms}
         value={valueSelectedSorting}
         onClick={handleClickSorting}
       />
