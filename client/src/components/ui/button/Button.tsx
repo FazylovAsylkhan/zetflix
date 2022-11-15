@@ -7,13 +7,17 @@ export const TYPE_BUTTON_RESET = 'reset';
 export const TYPE_BUTTON_SUBMIT = 'submit';
 export const CLASSNAME_PRIMARY = 'primary';
 export const CLASSNAME_LIGHT = 'light';
+export const CLASSNAME_TRANSPARENT = 'transparent';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?:
     | typeof TYPE_BUTTON_BUTTON
     | typeof TYPE_BUTTON_RESET
     | typeof TYPE_BUTTON_SUBMIT;
-  stylesType?: typeof CLASSNAME_PRIMARY | typeof CLASSNAME_LIGHT;
+  stylesType?:
+    | typeof CLASSNAME_PRIMARY
+    | typeof CLASSNAME_LIGHT
+    | typeof CLASSNAME_TRANSPARENT;
   parentClasses?: string;
 }
 
@@ -24,11 +28,12 @@ export function Button({
   type = TYPE_BUTTON_BUTTON,
   stylesType = CLASSNAME_PRIMARY,
 }: ButtonProps): JSX.Element {
-  const { primary, light } = classes;
+  const { primary, light, transparent } = classes;
 
   const styles = {
     primary: joinClasses(parentClasses, primary),
     light: joinClasses(parentClasses, light),
+    transparent: joinClasses(parentClasses, transparent),
   };
 
   switch (type) {
