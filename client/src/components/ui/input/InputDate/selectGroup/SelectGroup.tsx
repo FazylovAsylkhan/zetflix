@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select } from '../../../select';
+import { Select } from 'components/ui/select';
 import { getUpdatedParametrs, initialParamters } from '../controller';
 import classes from './SelectGroup.module.scss';
 

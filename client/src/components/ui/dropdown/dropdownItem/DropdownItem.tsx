@@ -7,9 +7,12 @@ interface DropdownItemProps {
   handlerClick: () => void;
 }
 
-function DropdownItem({ item, handlerClick }: DropdownItemProps): JSX.Element {
-  const { isChecked, value } = item;
+export function DropdownItem({
+  item,
+  handlerClick,
+}: DropdownItemProps): JSX.Element {
   const { checkedOption, notCheckedOption } = classes;
+  const { isChecked, value } = item;
 
   const stateStyles = isChecked ? checkedOption : notCheckedOption;
 

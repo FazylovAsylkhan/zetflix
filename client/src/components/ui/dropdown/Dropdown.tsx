@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import DropdownItem from './dropdownItem';
+import { DropdownItem } from './dropdownItem';
 import type { IDropdownItem } from './models';
-import { joinClasses } from '../../../helpers';
+import { joinClasses } from 'helpers';
+import { useCatchingEventOutsideElement } from 'hooks';
 import classes from './Dropdown.module.scss';
-import { useCatchingEventOutsideElement } from '../../../hooks';
 
 interface DropdownProps {
   initialItems: IDropdownItem[];

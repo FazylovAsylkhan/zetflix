@@ -1,7 +1,6 @@
 import React from 'react';
-import { ICard } from '../../../collectionMovies/cards/card';
-import { Field } from './field';
-import { IField } from './field/models';
+import { ICard } from 'components/blocks/collectionMovies/cards/card';
+import { Field, IField } from './field';
 import classes from './Fields.module.scss';
 
 interface FormFieldsProps {

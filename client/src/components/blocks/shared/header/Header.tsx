@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Prompt } from '../../../ui';
+import { Button, Prompt } from 'components/ui';
 import { Logo } from '../logo';
 import classes from './Header.module.scss';
 

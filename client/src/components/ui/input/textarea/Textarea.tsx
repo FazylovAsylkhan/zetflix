@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from '../../../../helpers';
+import { joinClasses } from 'helpers';
 import classes from './Textarea.module.scss';
 
 interface TextareaProps extends React.HTMLAttributes<HTMLTextAreaElement> {

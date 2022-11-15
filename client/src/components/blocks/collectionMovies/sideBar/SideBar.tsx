@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IMenuItem, Menu, Select, ISelect } from '../../../ui';
+import { IMenuItem, Menu, Select, ISelect } from 'components/ui';
 import classes from './SideBar.module.scss';
 
 interface SideBarProps {

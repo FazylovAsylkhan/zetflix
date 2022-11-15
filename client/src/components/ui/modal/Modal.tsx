@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from '../../../helpers';
+import { joinClasses } from 'helpers';
 import classes from './Modal.module.scss';
 
 interface ModalProps extends React.HTMLAttributes<HTMLElement> {

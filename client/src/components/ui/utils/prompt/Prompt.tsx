@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { MovieForm } from '../../../blocks';
-import { ButtonClose } from '../../button';
-import { Modal, Background } from '../../modal';
-import { Alert } from '../alert';
-import { H2 } from '../../typography/h2';
-import { alertMessage } from '../../../../assets/data';
+import { Modal, Background, ButtonClose, H2, Alert } from 'components/ui';
+import { alertMessage } from 'assets/data';
+import { MovieForm } from 'components/blocks';
+import { ICard } from 'components/blocks/collectionMovies/cards/card';
 import classes from './Prompt.module.scss';
-import { ICard } from '../../../blocks/collectionMovies/cards/card';
 
 interface PromptProps {
   data?: ICard;

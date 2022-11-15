@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal } from '../modal';
-import { ButtonClose } from '../button';
+import { Modal, ButtonClose } from 'components/ui';
 import classes from './Tooltip.module.scss';
 
 interface TooltipsProps {

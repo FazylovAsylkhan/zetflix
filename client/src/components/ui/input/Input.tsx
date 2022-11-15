@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from '../../../helpers';
+import { joinClasses } from 'helpers';
 import classes from './Input.module.scss';
 
 interface InputProps extends React.HTMLAttributes<HTMLInputElement> {

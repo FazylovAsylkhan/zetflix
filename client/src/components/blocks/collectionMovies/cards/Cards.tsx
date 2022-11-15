@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, ICard } from './card';
-import classes from './Cards.module.scss';
 import { getUpdatedCardsOnClickTooltip, getUpdatedCardsOnHover } from './model';
+import classes from './Cards.module.scss';
 
 interface CardsProps {
   data: ICard[];

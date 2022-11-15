@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from '../../../../helpers';
+import { joinClasses } from 'helpers';
 import classes from './H3.module.scss';
 
 const CLASSNAME_PRIMARY = 'primary';

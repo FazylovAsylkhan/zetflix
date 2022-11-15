@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { Tooltip, Prompt, Confirm, H3 } from 'components/ui';
+import { confirmMessage } from 'assets/data';
 import { ICard } from './models';
-import { Tooltip, Prompt, Confirm, H3 } from '../../../../ui';
-import classes from './Card.module.scss';
-import { confirmMessage } from '../../../../../assets/data';
 import { getYear } from '../model';
+import classes from './Card.module.scss';
 
 interface CardProps {
   data: ICard;

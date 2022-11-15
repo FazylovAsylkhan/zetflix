@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "target": "es2015",
@@ -15,7 +16,13 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "sourceMap": true,
+    "outDir": "./build/",
+    "baseUrl": "src",
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
   "include": ["src/**/*", "./declaration.d.ts"],
   "exclude": ["node_modules", "build"]

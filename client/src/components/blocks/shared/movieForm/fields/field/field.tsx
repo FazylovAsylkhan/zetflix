@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
-import { Textarea, Input, Label, Dropdown, InputDate } from '../../../../../ui';
-import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
-import classes from './Field.module.scss';
-import { ICard } from '../../../../collectionMovies/cards/card';
+import React, { useEffect, useState } from 'react';
+import { Textarea, Input, Label, Dropdown, InputDate } from 'components/ui';
 import { getListCheckedGenres, getInitialState } from './model';
+import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
+import { ICard } from 'components/blocks/collectionMovies/cards/card';
+import classes from './Field.module.scss';
 
-interface fieldProps {
+interface FieldProps {
   fieldData: IField;
   data?: ICard;
 }
 
-export function Field({ fieldData, data }: fieldProps): JSX.Element {
+export function Field({ fieldData, data }: FieldProps): JSX.Element {
   const { label } = classes;
   const { componentType, title, placeholder, defaultGenres } = fieldData;
   const parentClassname = componentType === TEXTAREA ? label : '';
 
-  const initialState =
-    data !== undefined ? getInitialState(data, fieldData) : '';
+  const [value, setValue] = useState('');
+  const [listGenres, setListGenres] = useState(defaultGenres);
 
-  const [value, setValue] = useState(initialState);
+  useEffect(() => {
+    if (data !== undefined) {
+      setValue(getInitialState(data, fieldData));
+      if (defaultGenres !== undefined) {
+        setListGenres(getListCheckedGenres(data, defaultGenres));
+      }
+    } else {
+      setValue('');
+      setListGenres(defaultGenres);
+    }
+  }, [data, fieldData, defaultGenres]);
 
   const handleChangingInputText = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -36,7 +46,7 @@ export function Field({ fieldData, data }: fieldProps): JSX.Element {
     setValue(valueSelectedDate);
   };
 
-  let FieldComponent = <div />;
+  let FieldComponent: JSX.Element;
 
   switch (componentType) {
     case INPUT_TEXT:
@@ -64,12 +74,7 @@ export function Field({ fieldData, data }: fieldProps): JSX.Element {
       );
       break;
     case DROPDOWN:
-      if (placeholder !== undefined && defaultGenres !== undefined) {
-        const listGenres =
-          data !== undefined
-            ? getListCheckedGenres(data, defaultGenres)
-            : defaultGenres;
-
+      if (placeholder !== undefined && listGenres !== undefined) {
         FieldComponent = (
           <Dropdown initialItems={listGenres} defaultValue={placeholder} />
         );
