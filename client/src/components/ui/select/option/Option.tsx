@@ -6,7 +6,7 @@ interface OptionProps {
   handlerClick: () => void;
 }
 
-function Option({ value, handlerClick }: OptionProps): JSX.Element {
+export function Option({ value, handlerClick }: OptionProps): JSX.Element {
   const { option, wrapper } = classes;
 
   return (
@@ -17,5 +17,3 @@ function Option({ value, handlerClick }: OptionProps): JSX.Element {
     </li>
   );
 }
-
-export default Option;

@@ -1,0 +1,40 @@
+.notCheckedOption,
+.checkedOption {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  padding: 9px 0;
+  padding-left: 25px;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  opacity: 0.8;
+  cursor: pointer;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+  &::before {
+    background: #ffffff;
+    border-radius: 2px;
+    width: 16px;
+    height: 16px;
+  }
+}
+.checkedOption {
+  &::before {
+    background: #e64c5a;
+  }
+  &::after {
+    left: 3px;
+    width: 10px;
+    height: 8px;
+    background: url('../../../../assets/icons/indicatorIcon.svg');
+  }
+}

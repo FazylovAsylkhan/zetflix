@@ -1,0 +1,21 @@
+.confirm {
+  z-index: 1000;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 686px;
+}
+.h2 {
+  margin-bottom: 40px;
+}
+.textDescription {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  margin-bottom: 50px;
+}
+.button {
+  align-self: end;
+}

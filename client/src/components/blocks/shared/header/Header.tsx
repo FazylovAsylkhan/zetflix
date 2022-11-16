@@ -1,19 +1,30 @@
-import React from 'react';
-import { Button, BUTTON_TYPE_BUTTON, CLASSNAME_LIGHT } from '../../../ui';
-import Logo from '../logo';
+import React, { useState } from 'react';
+import { Button, Prompt } from 'components/ui';
+import { Logo } from '../logo';
 import classes from './Header.module.scss';
 
-function Header(): JSX.Element {
+export function Header(): JSX.Element {
   const { header } = classes;
+  const [isShownPrompt, setIsShownPrompt] = useState(false);
 
   return (
-    <header className={header}>
-      <Logo />
-      <Button stylesType={CLASSNAME_LIGHT} type={BUTTON_TYPE_BUTTON}>
-        + Add movie
-      </Button>
-    </header>
+    <>
+      <header className={header}>
+        <Logo />
+        <Button
+          stylesType="light"
+          type="button"
+          onClick={() => setIsShownPrompt(!isShownPrompt)}>
+          + Add movie
+        </Button>
+      </header>
+
+      {isShownPrompt && (
+        <Prompt
+          title="EDIT MOVIE"
+          handlerButtonClose={() => setIsShownPrompt(false)}
+        />
+      )}
+    </>
   );
 }
-
-export default Header;

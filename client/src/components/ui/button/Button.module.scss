@@ -1,4 +1,5 @@
-.primary {
+.primary,
+.transparent {
   padding: 18px 70px;
   font-weight: 500;
   font-size: 20px;
@@ -21,4 +22,9 @@
   text-transform: uppercase;
   color: #f65261;
   cursor: pointer;
+}
+.transparent {
+  background: transparent;
+  border: 1.5px solid #f65261;
+  color: #f65261;
 }

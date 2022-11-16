@@ -1,7 +1,7 @@
 .sideBar {
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
   width: 100%;
   height: fit-content;
   margin-bottom: 24px;
@@ -22,22 +22,5 @@
     left: 0;
     width: 100%;
     border-bottom: 2px solid #424242;
-  }
-}
-
-.box {
-  display: flex;
-  & > span {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.888889px;
-    text-transform: uppercase;
-    color: #ffffff;
-    mix-blend-mode: normal;
-    opacity: 0.6;
-  }
-  .selectForms {
-    width: 200px;
   }
 }

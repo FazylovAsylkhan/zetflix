@@ -1,0 +1,1 @@
+export { useCatchingEventOutsideElement } from './useCatchingEventOutsideElement';

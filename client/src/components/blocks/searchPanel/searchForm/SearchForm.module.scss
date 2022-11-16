@@ -1,4 +1,19 @@
 .searchForm {
   display: flex;
+  flex-direction: column;
   gap: 14px;
+  width: 960px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+.input {
+  width: 710px;
+}
+.h2 {
+  margin-bottom: 38px;
 }

@@ -26,6 +26,13 @@ const config = {
     clean: true,
   },
   resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      assets: path.resolve(__dirname, 'src/assets'),
+      helpers: path.resolve(__dirname, 'src/helpers'),
+      hooks: path.resolve(__dirname, 'src/hooks'),
+      scss: path.resolve(__dirname, 'src/scss'),
+    },
     extensions: ['.wasm', '.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   plugins: [

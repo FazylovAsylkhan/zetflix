@@ -1,43 +1,70 @@
 import React from 'react';
-import { joinClasses } from '../../../helpers';
+import { joinClasses } from 'helpers';
 import classes from './Button.module.scss';
-import {
-  BUTTON_TYPE_SUBMIT,
-  BUTTON_TYPE_RESET,
-  BUTTON_TYPE_BUTTON,
-  CLASSNAME_PRIMARY,
-  CLASSNAME_LIGHT,
-} from './consts';
+
+export const TYPE_BUTTON_BUTTON = 'button';
+export const TYPE_BUTTON_RESET = 'reset';
+export const TYPE_BUTTON_SUBMIT = 'submit';
+export const CLASSNAME_PRIMARY = 'primary';
+export const CLASSNAME_LIGHT = 'light';
+export const CLASSNAME_TRANSPARENT = 'transparent';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?:
-    | typeof BUTTON_TYPE_SUBMIT
-    | typeof BUTTON_TYPE_RESET
-    | typeof BUTTON_TYPE_BUTTON;
-  stylesType?: typeof CLASSNAME_PRIMARY | typeof CLASSNAME_LIGHT;
+    | typeof TYPE_BUTTON_BUTTON
+    | typeof TYPE_BUTTON_RESET
+    | typeof TYPE_BUTTON_SUBMIT;
+  stylesType?:
+    | typeof CLASSNAME_PRIMARY
+    | typeof CLASSNAME_LIGHT
+    | typeof CLASSNAME_TRANSPARENT;
   parentClasses?: string;
 }
 
-function Button({
+export function Button({
   children,
   onClick,
   parentClasses = '',
-  type = BUTTON_TYPE_BUTTON,
+  type = TYPE_BUTTON_BUTTON,
   stylesType = CLASSNAME_PRIMARY,
 }: ButtonProps): JSX.Element {
-  const { primary, light } = classes;
+  const { primary, light, transparent } = classes;
 
   const styles = {
     primary: joinClasses(parentClasses, primary),
     light: joinClasses(parentClasses, light),
+    transparent: joinClasses(parentClasses, transparent),
   };
 
-  return (
-    // eslint-disable-next-line react/button-has-type
-    <button type={type} className={styles[stylesType]} onClick={onClick}>
-      {children}
-    </button>
-  );
+  switch (type) {
+    case TYPE_BUTTON_BUTTON:
+      return (
+        <button
+          type={TYPE_BUTTON_BUTTON}
+          className={styles[stylesType]}
+          onClick={onClick}>
+          {children}
+        </button>
+      );
+    case TYPE_BUTTON_RESET:
+      return (
+        <button
+          type={TYPE_BUTTON_RESET}
+          className={styles[stylesType]}
+          onClick={onClick}>
+          {children}
+        </button>
+      );
+    case TYPE_BUTTON_SUBMIT:
+      return (
+        <button
+          type={TYPE_BUTTON_SUBMIT}
+          className={styles[stylesType]}
+          onClick={onClick}>
+          {children}
+        </button>
+      );
+    default:
+      throw new Error('Type button not found');
+  }
 }
-
-export default Button;

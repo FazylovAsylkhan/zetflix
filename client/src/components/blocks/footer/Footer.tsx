@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from '../shared/logo';
+import { Logo } from 'components/blocks/shared';
 import classes from './Footer.module.scss';
 
-function Footer(): JSX.Element {
+export function Footer(): JSX.Element {
   const { footer } = classes;
   return (
     <footer className={footer}>
@@ -10,5 +10,3 @@ function Footer(): JSX.Element {
     </footer>
   );
 }
-
-export default Footer;

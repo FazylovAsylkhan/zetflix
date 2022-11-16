@@ -22,3 +22,13 @@ body {
   padding-bottom: 0;
   grid-column: 1 / 12 span;
 }
+
+::-webkit-scrollbar-thumb {
+  background: #f65261;
+}
+::-webkit-scrollbar {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(#000, 0.5);
+}

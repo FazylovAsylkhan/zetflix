@@ -1,3 +1,1 @@
-import CollectionMovies from './CollectionMovies';
-
-export default CollectionMovies;
+export { CollectionMovies } from './CollectionMovies';

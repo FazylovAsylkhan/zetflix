@@ -1,20 +1,15 @@
 import React from 'react';
-import SearchPanel from '../../blocks/searchPanel';
-import Footer from '../../blocks/footer';
-import CollectionMovies from '../../blocks/collectionMovies';
-import classes from './HomePage.module.scss';
-import ErrorBoundary from '../../errorBoundary';
+import { CollectionMovies, Footer, SearchPanel } from 'components/blocks';
+import { ErrorBoundary } from 'components/errorBoundary';
+import { HorizontalRule } from 'components/ui';
 
-function HomePage(): JSX.Element {
-  const { hr } = classes;
+export function HomePage(): JSX.Element {
   return (
     <ErrorBoundary>
       <SearchPanel />
-      <hr className={hr} />
+      <HorizontalRule />
       <CollectionMovies />
       <Footer />
     </ErrorBoundary>
   );
 }
-
-export default HomePage;

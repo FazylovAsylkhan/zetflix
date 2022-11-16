@@ -1,21 +1,46 @@
-import React from 'react';
-import Card, { ICard } from './card';
+import React, { useState } from 'react';
+import { Card, ICard } from './card';
+import { getUpdatedCardsOnClickTooltip, getUpdatedCardsOnHover } from './model';
 import classes from './Cards.module.scss';
 
 interface CardsProps {
-  arrCards: ICard[];
+  data: ICard[];
 }
 
-function Cards({ arrCards }: CardsProps): JSX.Element {
-  const { cards } = classes;
+export function Cards({ data }: CardsProps): JSX.Element {
+  const { wrapper } = classes;
+  const [cards, setCards] = useState(data);
+
+  const handleHover = (id: number, isShownTooltip: boolean): void => {
+    const updatedCards = getUpdatedCardsOnHover(cards, id, isShownTooltip);
+
+    setCards(updatedCards);
+  };
+
+  const handleClickTooltip = (
+    id: number,
+    isOpenedModalSettings: boolean
+  ): void => {
+    const updatedCards = getUpdatedCardsOnClickTooltip(
+      cards,
+      id,
+      isOpenedModalSettings
+    );
+    setCards(updatedCards);
+  };
 
   return (
-    <div className={cards}>
-      {arrCards.map((card) => (
-        <Card key={card.id} data={card} />
-      ))}
+    <div className={wrapper}>
+      {cards.map((card) => {
+        return (
+          <Card
+            key={card.id}
+            data={card}
+            onHover={handleHover}
+            onClickTooltip={handleClickTooltip}
+          />
+        );
+      })}
     </div>
   );
 }
-
-export default Cards;

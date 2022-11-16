@@ -1,28 +1,29 @@
 import React from 'react';
+import { joinClasses } from 'helpers';
 import classes from './Input.module.scss';
 
 interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
-  value: string;
   id?: string;
+  parentClasses?: string;
+  value: string;
 }
 
-function Input({
-  onChange,
-  value,
+export function Input({
   placeholder,
-  id = String(new Date().getDate()),
+  value,
+  parentClasses,
+  id,
+  onChange,
 }: InputProps): JSX.Element {
-  const { search } = classes;
+  const { input } = classes;
 
   return (
     <input
       id={id}
-      className={search}
+      className={joinClasses(parentClasses, input)}
       onChange={onChange}
       value={value}
       placeholder={placeholder}
     />
   );
 }
-
-export default Input;

@@ -6,6 +6,9 @@
   text-transform: uppercase;
   cursor: pointer;
   width: 100%;
+  &:hover {
+    background-color: #f65261;
+  }
 }
 .wrapper {
   width: 100%;

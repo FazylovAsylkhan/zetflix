@@ -1,35 +1,56 @@
-import React, { useState } from 'react';
-import Option from './option';
-import { joinClasses } from '../../../helpers';
+import React, { useRef, useState } from 'react';
+import { joinClasses } from 'helpers';
+import { useCatchingEventOutsideElement } from 'hooks';
+import { Option, ISelect } from './';
 import classes from './Select.module.scss';
 
 interface SelectProps {
-  arrOptions: string[];
+  data: ISelect;
   parentClasses?: string;
+  value: string;
+  onClick: (valueSelectedOption: string) => void;
 }
 
-function Select({ arrOptions, parentClasses = '' }: SelectProps): JSX.Element {
-  const { selectForm, options, selector, active } = classes;
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(arrOptions[0]);
-  const stateClassName = isOpen ? joinClasses(selector, active) : selector;
+export function Select({
+  data,
+  value,
+  parentClasses = '',
+  onClick,
+}: SelectProps): JSX.Element {
+  const { selectForm, options, openedSelector, closedSelector, labelTitle } =
+    classes;
+  const { labelText, listOptions } = data;
+  const [isShownListOptions, setIsShownListOptions] = useState(false);
+  const stateClassName = isShownListOptions ? openedSelector : closedSelector;
 
-  const handleClick = (option: string): void => {
-    setSelectedOption(option);
-    setIsOpen(false);
+  const handleClick = (valueSelectedOption: string): void => {
+    onClick(valueSelectedOption);
+    setIsShownListOptions(false);
   };
 
+  const refSelectElement = useRef(null);
+  useCatchingEventOutsideElement('mousedown', refSelectElement, () =>
+    setIsShownListOptions(false)
+  );
+
   return (
-    <div className={joinClasses(parentClasses, selectForm)}>
+    <div
+      ref={refSelectElement}
+      className={joinClasses(parentClasses, selectForm)}>
+      <label className={labelTitle} htmlFor={value}>
+        {labelText}
+      </label>
       <button
+        id={value}
         type="button"
         className={stateClassName}
-        onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption}
+        onClick={() => setIsShownListOptions(!isShownListOptions)}>
+        {value}
       </button>
-      {isOpen && (
+
+      {isShownListOptions && (
         <ul className={options}>
-          {arrOptions.map((option) => (
+          {listOptions.map((option) => (
             <Option
               key={option}
               value={option}
@@ -41,5 +62,3 @@ function Select({ arrOptions, parentClasses = '' }: SelectProps): JSX.Element {
     </div>
   );
 }
-
-export default Select;
