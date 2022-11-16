@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Textarea, Input, Label, Dropdown, InputDate } from 'components/ui';
+import { Dropdown, Input, InputDate, Label, Textarea } from 'components/ui';
 import { getListCheckedGenres, getInitialState } from './model';
 import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
 import { ICard } from 'components/blocks/collectionMovies/cards/card';
@@ -12,18 +12,17 @@ interface FieldProps {
 
 export function Field({ fieldData, data }: FieldProps): JSX.Element {
   const { label } = classes;
-  const { componentType, title, placeholder, defaultGenres } = fieldData;
-  const parentClassname = componentType === TEXTAREA ? label : '';
-
+  const { componentType, title, defaultGenres, placeholder } = fieldData;
   const [value, setValue] = useState('');
   const [listGenres, setListGenres] = useState(defaultGenres);
 
   useEffect(() => {
-    if (data !== undefined) {
+    const isDropdownField = data !== undefined && defaultGenres !== undefined;
+
+    if (isDropdownField) {
+      setListGenres(getListCheckedGenres(data, defaultGenres));
+    } else if (data !== undefined) {
       setValue(getInitialState(data, fieldData));
-      if (defaultGenres !== undefined) {
-        setListGenres(getListCheckedGenres(data, defaultGenres));
-      }
     } else {
       setValue('');
       setListGenres(defaultGenres);
@@ -46,49 +45,49 @@ export function Field({ fieldData, data }: FieldProps): JSX.Element {
     setValue(valueSelectedDate);
   };
 
-  let FieldComponent: JSX.Element;
-
   switch (componentType) {
     case INPUT_TEXT:
-      FieldComponent = (
-        <Input
-          value={value}
-          onChange={handleChangingInputText}
-          id={title}
-          placeholder={placeholder}
-        />
+      return (
+        <Label id={title} title={title}>
+          <Input
+            value={value}
+            onChange={handleChangingInputText}
+            id={title}
+            placeholder={placeholder}
+          />
+        </Label>
       );
-      break;
     case INPUT_DATE:
-      FieldComponent = (
-        <InputDate
-          value={value}
-          onChange={handleChangingInputDate}
-          placeholder={placeholder}
-        />
+      return (
+        <Label id={title} title={title}>
+          <InputDate
+            value={value}
+            onChange={handleChangingInputDate}
+            placeholder={placeholder}
+          />
+        </Label>
       );
-      break;
     case TEXTAREA:
-      FieldComponent = (
-        <Textarea value={value} onChange={handleChangingTextarea} id={title} />
+      return (
+        <Label id={title} title={title} parentClasses={label}>
+          <Textarea
+            value={value}
+            onChange={handleChangingTextarea}
+            id={title}
+          />
+        </Label>
       );
-      break;
     case DROPDOWN:
       if (placeholder !== undefined && listGenres !== undefined) {
-        FieldComponent = (
-          <Dropdown initialItems={listGenres} defaultValue={placeholder} />
+        return (
+          <Label id={title} title={title}>
+            <Dropdown initialItems={listGenres} defaultValue={placeholder} />
+          </Label>
         );
       } else {
         throw new Error('Required props dropdown not found');
       }
-      break;
     default:
       throw new Error('ComponentType not found');
   }
-
-  return (
-    <Label id={title} title={title} parentClasses={parentClassname}>
-      {FieldComponent}
-    </Label>
-  );
 }
