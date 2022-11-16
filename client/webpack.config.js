@@ -17,7 +17,7 @@ const fileNameOfScssModules = isProduction
   : '[folder]_[local]__[hash:base64:2]';
 
 const config = {
-  context: __dirname,
+  context: path.resolve(__dirname, './'),
   entry: {
     index: './src/index.tsx',
   },
@@ -27,11 +27,13 @@ const config = {
   },
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'src/components'),
-      assets: path.resolve(__dirname, 'src/assets'),
-      helpers: path.resolve(__dirname, 'src/helpers'),
-      hooks: path.resolve(__dirname, 'src/hooks'),
-      scss: path.resolve(__dirname, 'src/scss'),
+      '@app': path.resolve(__dirname, 'src/app'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@helpers': path.resolve(__dirname, 'src/helpers'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@scss': path.resolve(__dirname, 'src/scss'),
     },
     extensions: ['.wasm', '.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
   },

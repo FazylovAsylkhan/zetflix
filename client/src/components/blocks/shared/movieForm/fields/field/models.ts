@@ -1,4 +1,4 @@
-import { IDropdownItem } from '../../../../../ui/dropdown/models';
+import { IDropdownItem } from '@components/ui';
 
 export const INPUT_TEXT = 'inputText';
 export const INPUT_DATE = 'inputDate';

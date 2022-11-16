@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from 'components/ui';
-import { MovieFormFields } from 'assets/data';
+import { MovieFormFields } from '@assets/data';
+import { Button } from '@components/ui';
+import { ICard } from '@components/blocks';
 import { Fields } from './fields';
-import { ICard } from 'components/blocks/collectionMovies/cards/card';
 import classes from './MovieForm.module.scss';
 
 interface MovieFormProps {

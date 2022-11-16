@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logo } from 'components/blocks/shared';
+import { Logo } from '../shared';
 import classes from './Footer.module.scss';
 
 export function Footer(): JSX.Element {

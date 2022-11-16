@@ -12,3 +12,4 @@ export { Alert, Confirm, Prompt } from './utils';
 
 export type { IMenuItem } from './menu';
 export type { ISelect } from './select';
+export type { IDropdownItem } from './dropdown';

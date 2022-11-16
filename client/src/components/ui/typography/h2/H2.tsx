@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClasses } from 'helpers';
+import { joinClasses } from '@helpers/joinClasses';
 import classes from './H2.module.scss';
 
 const CLASSNAME_PRIMARY = 'primary';

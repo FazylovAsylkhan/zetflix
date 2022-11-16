@@ -1,19 +1,19 @@
 import React, { useRef, useState } from 'react';
+import { joinClasses } from '@helpers/joinClasses';
+import { useCatchingEventOutsideElement } from '@hooks/useCatchingEventOutsideElement';
 import { DropdownItem } from './dropdownItem';
 import type { IDropdownItem } from './models';
-import { joinClasses } from 'helpers';
-import { useCatchingEventOutsideElement } from 'hooks';
 import classes from './Dropdown.module.scss';
 
 interface DropdownProps {
   initialItems: IDropdownItem[];
-  parantClasses?: string;
+  parentClasses?: string;
   defaultValue: string;
 }
 export function Dropdown({
   initialItems,
   defaultValue,
-  parantClasses = '',
+  parentClasses = '',
 }: DropdownProps): JSX.Element {
   const { openedSelector, closedSelector, dropdown, list } = classes;
   const [isOpened, setIsOpened] = useState(false);
@@ -44,7 +44,7 @@ export function Dropdown({
   );
 
   return (
-    <div ref={refDropdown} className={joinClasses(parantClasses, dropdown)}>
+    <div ref={refDropdown} className={joinClasses(parentClasses, dropdown)}>
       <button
         type="button"
         className={stateStyles}

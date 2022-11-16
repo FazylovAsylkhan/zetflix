@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Background, ButtonClose, H2 } from 'components/ui';
+import { Modal, Background, ButtonClose, H2 } from '@components/ui';
 import classes from './Alert.module.scss';
 
 interface IMessage {

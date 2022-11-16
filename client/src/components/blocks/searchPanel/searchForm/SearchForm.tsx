@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button, H2 } from 'components/ui';
+import { Input, Button, H2 } from '@components/ui';
 import classes from './SearchForm.module.scss';
 
 export function SearchForm(): JSX.Element {

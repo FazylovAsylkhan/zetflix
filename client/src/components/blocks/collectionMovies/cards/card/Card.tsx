@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Tooltip, Prompt, Confirm, H3 } from 'components/ui';
-import { confirmMessage } from 'assets/data';
+import { Tooltip, Prompt, Confirm, H3 } from '@components/ui';
+import { confirmMessage } from '@assets/data';
 import { ICard } from './models';
 import { getYear } from '../model';
 import classes from './Card.module.scss';

@@ -1,5 +1,5 @@
-import { IDropdownItem } from '../../../../../../ui/dropdown/models';
-import { ICard } from '../../../../../collectionMovies/cards/card';
+import { ICard } from '@components/blocks';
+import { IDropdownItem } from '@components/ui';
 import { IField } from '../models';
 
 const TITLE_TEXT_TITLE = 'title';

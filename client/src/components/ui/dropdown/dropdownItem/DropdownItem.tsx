@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IDropdownItem } from '../models';
+import { IDropdownItem } from '../models';
 import classes from './DropdownItem.module.scss';
 
 interface DropdownItemProps {

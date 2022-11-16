@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICard } from 'components/blocks/collectionMovies/cards/card';
+import { ICard } from '@components/blocks';
 import { Field, IField } from './field';
 import classes from './Fields.module.scss';
 

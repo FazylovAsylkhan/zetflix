@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../shared';
 import { SearchForm } from './searchForm';
-import generalClasses from 'scss/style.module.scss';
+import generalClasses from '@scss/style.module.scss';
 import classes from './SearchPanel.module.scss';
 
 export function SearchPanel(): JSX.Element {

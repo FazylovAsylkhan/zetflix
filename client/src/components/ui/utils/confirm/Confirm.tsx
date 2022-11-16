@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Background, ButtonClose, H2, Button } from 'components/ui';
+import { Modal, Background, ButtonClose, H2, Button } from '@components/ui';
 import classes from './Confirm.module.scss';
 
 interface IMessage {

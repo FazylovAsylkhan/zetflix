@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown, Input, InputDate, Label, Textarea } from 'components/ui';
+import { Dropdown, Input, InputDate, Label, Textarea } from '@components/ui';
+import { ICard } from '@components/blocks';
 import { getListCheckedGenres, getInitialState } from './model';
 import { IField, DROPDOWN, INPUT_DATE, INPUT_TEXT, TEXTAREA } from './models';
-import { ICard } from 'components/blocks/collectionMovies/cards/card';
 import classes from './Field.module.scss';
 
 interface FieldProps {
