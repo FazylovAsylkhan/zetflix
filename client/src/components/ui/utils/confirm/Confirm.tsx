@@ -7,7 +7,7 @@ interface IMessage {
   description: string;
   textButton: string;
 }
-interface ConfirmPromps {
+interface ConfirmProps {
   message: IMessage;
   handlerButtonClose: () => void;
 }
@@ -15,7 +15,7 @@ interface ConfirmPromps {
 export function Confirm({
   message,
   handlerButtonClose,
-}: ConfirmPromps): JSX.Element {
+}: ConfirmProps): JSX.Element {
   const { confirm, modal, h2, textDescription, button } = classes;
   const { title, description, textButton } = message;
 

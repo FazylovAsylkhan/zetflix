@@ -10,20 +10,24 @@ import {
   IDate,
 } from '../model';
 
-export interface UpdatedParametrsProps {
+export interface UpdatedParametersProps {
   updatedListDays: string[];
   updatedDay: string;
   updatedSelectedDate: string;
 }
 
-export interface InitialParamtersProps {
+export interface InitialParametersProps {
   initialListNamesMonths: string[];
   initialListYears: string[];
   initialListDays: string[];
   initialValueSelectedMonth: string;
   initialDate: IDate;
 }
-export function getUpdatedParametrs({ m, d, y }: IDate): UpdatedParametrsProps {
+export function getUpdatedParameters({
+  m,
+  d,
+  y,
+}: IDate): UpdatedParametersProps {
   const fullNameMonth = getValidatedNameMonth(m);
   const updatedListDays = getArrDaysFrom(fullNameMonth, y);
   const updatedDay = getValidatedValueDay(updatedListDays, d);
@@ -36,7 +40,7 @@ export function getUpdatedParametrs({ m, d, y }: IDate): UpdatedParametrsProps {
   };
 }
 
-export function initialParamters(): InitialParamtersProps {
+export function initialParameters(): InitialParametersProps {
   const { m, y } = getCurrentDate();
   const fullNameCurrentMonth = getFullNameMonth(m);
 

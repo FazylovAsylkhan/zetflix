@@ -19,7 +19,7 @@ export function Card({
   const { card, box, img, digits, genre } = classes;
   const { title, subtitle, date, image, stateTooltip, id } = data;
   const { isShownTooltip, isShownListOptions } = stateTooltip;
-  const [isShownPromt, setIsShownPromt] = useState(false);
+  const [isShownPrompt, setIsShownPrompt] = useState(false);
   const [isShownConfirm, setIsShownConfirm] = useState(false);
 
   const setIsShownListOptions = (state: boolean): void => {
@@ -27,7 +27,7 @@ export function Card({
   };
 
   const handleClickPrompt = (state: boolean): void => {
-    setIsShownPromt(state);
+    setIsShownPrompt(state);
     setIsShownListOptions(false);
   };
 
@@ -58,7 +58,7 @@ export function Card({
         )}
       </div>
 
-      {isShownPromt && (
+      {isShownPrompt && (
         <Prompt
           data={data}
           title="Edit movie"

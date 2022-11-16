@@ -7,7 +7,7 @@ interface IMessage {
   description: string;
 }
 
-interface AlertPromps {
+interface AlertProps {
   message: IMessage;
   handlerButtonClose: () => void;
 }
@@ -15,7 +15,7 @@ interface AlertPromps {
 export function Alert({
   handlerButtonClose,
   message,
-}: AlertPromps): JSX.Element {
+}: AlertProps): JSX.Element {
   const { alert, modal, icon, wrapper, descriptionText } = classes;
   const { title, description } = message;
 

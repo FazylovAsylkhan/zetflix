@@ -134,7 +134,7 @@ const defaultGenres = [
   { isChecked: false, value: 'Sci-Fi' },
 ];
 
-export const MovieFormfields = [
+export const MovieFormFields = [
   {
     title: 'title',
     placeholder: 'Name',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Select } from 'components/ui/select';
-import { getUpdatedParametrs, initialParamters } from '../controller';
+import { getUpdatedParameters, initialParameters } from '../controller';
 import classes from './SelectGroup.module.scss';
 
 interface SelectGroupProps {
@@ -18,7 +18,7 @@ export function SelectGroup({
     initialListNamesMonths: listMonths,
     initialListYears: listYears,
     initialValueSelectedMonth: m,
-  } = initialParamters();
+  } = initialParameters();
 
   const [date, setDate] = useState(initialDate);
   const [listDays, setListDays] = useState(initialListDays);
@@ -42,7 +42,7 @@ export function SelectGroup({
   const [valueSelectedYear, setValueSelectedYear] = useState(y);
 
   const handleClickSelectDay = (valueSelectedOption: string): void => {
-    const { updatedSelectedDate } = getUpdatedParametrs({
+    const { updatedSelectedDate } = getUpdatedParameters({
       ...date,
       d: valueSelectedOption,
     });
@@ -55,7 +55,7 @@ export function SelectGroup({
 
   const handleClickSelectMonth = (valueSelectedOption: string): void => {
     const { updatedDay, updatedListDays, updatedSelectedDate } =
-      getUpdatedParametrs({ ...date, m: valueSelectedOption });
+      getUpdatedParameters({ ...date, m: valueSelectedOption });
 
     setDate({ ...date, d: updatedDay, m: valueSelectedOption });
     setListDays(updatedListDays);
@@ -67,7 +67,7 @@ export function SelectGroup({
 
   const handleClickSelectYear = (valueSelectedOption: string): void => {
     const { updatedDay, updatedListDays, updatedSelectedDate } =
-      getUpdatedParametrs({ ...date, y: valueSelectedOption });
+      getUpdatedParameters({ ...date, y: valueSelectedOption });
 
     setDate({ ...date, d: updatedDay, y: valueSelectedOption });
     setListDays(updatedListDays);
