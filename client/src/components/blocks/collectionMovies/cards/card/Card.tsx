@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Tooltip, Prompt, Confirm, H3 } from '@components/ui';
+import React, { useContext, useState } from 'react';
+import { HomePageContext } from '@context/home';
+import { Tooltip, Prompt, Confirm, H3, H4 } from '@components/ui';
 import { confirmMessage } from '@assets/data';
 import { ICard } from './models';
-import { getYear } from '../model';
 import classes from './Card.module.scss';
+import { getValueYearFrom } from '@helpers/getValueYearFrom';
+import { scrollUp } from '@helpers/scrollUp';
 
 interface CardProps {
   data: ICard;
@@ -16,9 +18,10 @@ export function Card({
   onHover,
   onClickTooltip,
 }: CardProps): JSX.Element {
-  const { card, box, img, digits, genre } = classes;
+  const { card, box, img, titleCard } = classes;
   const { title, subtitle, date, image, stateTooltip, id } = data;
   const { isShownTooltip, isShownListOptions } = stateTooltip;
+
   const [isShownPrompt, setIsShownPrompt] = useState(false);
   const [isShownConfirm, setIsShownConfirm] = useState(false);
 
@@ -27,13 +30,20 @@ export function Card({
   };
 
   const handleClickPrompt = (state: boolean): void => {
+    if (state) scrollUp();
     setIsShownPrompt(state);
     setIsShownListOptions(false);
   };
 
   const handleClickConfirm = (state: boolean): void => {
+    if (state) scrollUp();
     setIsShownConfirm(state);
     setIsShownListOptions(false);
+  };
+
+  const HomePageCtx = useContext(HomePageContext);
+  const handleClickImg = (): void => {
+    HomePageCtx?.setSelectedMovie(data);
   };
 
   return (
@@ -42,12 +52,22 @@ export function Card({
         className={card}
         onMouseOver={() => onHover(id, true)}
         onMouseLeave={() => onHover(id, false)}>
-        <img alt="preview" src={image} className={img} />
+        <img
+          alt="preview"
+          src={image}
+          className={img}
+          onClick={() => handleClickImg()}
+        />
         <div className={box}>
-          <H3 stylesType="primary">{title}</H3>
-          <span className={digits}>{getYear(date)}</span>
+          <H3
+            stylesType="primary"
+            onClick={() => handleClickImg()}
+            parentClasses={titleCard}>
+            {title}
+          </H3>
+          <H4 stylesType="rectangle">{getValueYearFrom(date)}</H4>
         </div>
-        <h3 className={genre}>{subtitle}</h3>
+        <H3 stylesType="small">{subtitle}</H3>
         {isShownTooltip && (
           <Tooltip
             isShownListOptions={isShownListOptions}

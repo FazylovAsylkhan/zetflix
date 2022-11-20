@@ -3,9 +3,10 @@ import { joinClasses } from '@helpers/joinClasses';
 import classes from './H3.module.scss';
 
 const CLASSNAME_PRIMARY = 'primary';
+const CLASSNAME_SMALL = 'small';
 
 interface H3Props extends React.HTMLAttributes<HTMLHeadingElement> {
-  stylesType?: typeof CLASSNAME_PRIMARY;
+  stylesType?: typeof CLASSNAME_PRIMARY | typeof CLASSNAME_SMALL;
   parentClasses?: string;
 }
 
@@ -14,9 +15,10 @@ export function H3({
   parentClasses = '',
   stylesType = CLASSNAME_PRIMARY,
 }: H3Props): JSX.Element {
-  const { primary } = classes;
+  const { primary, small } = classes;
   const styles = {
     primary: joinClasses(parentClasses, primary),
+    small: joinClasses(parentClasses, small),
   };
 
   return <h3 className={styles[stylesType]}>{children}</h3>;

@@ -1,0 +1,39 @@
+.movie {
+  display: flex;
+  gap: 60px;
+  padding: 30px 0;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-height: 486px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.img {
+  width: 325px;
+  height: 486px;
+}
+.description {
+  white-space: wrap;
+  overflow-x: hidden;
+  max-width: 700px;
+  text-overflow: ellipsis;
+  height: 300px;
+  padding-right: 10px;
+}
+.mr50 {
+  margin-right: 50px;
+}
+.mr20 {
+  margin-right: 20px;
+}
