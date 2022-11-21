@@ -9,12 +9,11 @@ interface ModalProps extends React.HTMLAttributes<HTMLElement> {
 export function Modal({
   children,
   parentClasses,
-  onMouseOver,
 }: ModalProps): JSX.Element | null {
   const { modal } = classes;
 
   return (
-    <div onMouseOver={onMouseOver}>
+    <div>
       <div className={joinClasses(parentClasses, modal)}>{children}</div>
     </div>
   );

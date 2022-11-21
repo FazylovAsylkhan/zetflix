@@ -9,7 +9,7 @@ interface SideBarProps {
 
 export function SideBar({ menu, select }: SideBarProps): JSX.Element {
   const { sideBar } = classes;
-  const initialValueSelectedSorting = select.listOptions[0];
+  const [initialValueSelectedSorting] = select.listOptions;
 
   const [valueSelectedSorting, setValueSelectedSorting] = useState(
     initialValueSelectedSorting

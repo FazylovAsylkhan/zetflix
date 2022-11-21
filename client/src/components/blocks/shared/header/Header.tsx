@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Prompt } from '@components/ui';
 import { HomePageContext } from '@context/home';
 import { Logo } from '../logo';
@@ -12,15 +12,9 @@ interface HeaderProps {
 export function Header({ parentClasses }: HeaderProps): JSX.Element {
   const { header, searchButton } = classes;
   const [isShownPrompt, setIsShownPrompt] = useState(false);
-  const [isShownSearchPanel, setIsShownSearchPanel] = useState(true);
   const HomePageCtx = useContext(HomePageContext);
-  useEffect(() => {
-    if (HomePageCtx?.selectedMovie !== undefined) {
-      setIsShownSearchPanel(false);
-    } else {
-      setIsShownSearchPanel(true);
-    }
-  }, [HomePageCtx]);
+  const stateSelectedMovie = HomePageCtx?.selectedMovie;
+  const isShownSeactButton = stateSelectedMovie !== undefined;
 
   const handleClickSearchButton = (): void => {
     HomePageCtx?.setSelectedMovie(undefined);
@@ -34,19 +28,19 @@ export function Header({ parentClasses }: HeaderProps): JSX.Element {
     <>
       <header className={joinClasses(parentClasses, header)}>
         <Logo />
-        {isShownSearchPanel ? (
+        {isShownSeactButton ? (
+          <button
+            type="button"
+            className={searchButton}
+            onClick={handleClickSearchButton}
+          />
+        ) : (
           <Button
             stylesType="light"
             type="button"
             onClick={() => handleClickAddButton()}>
             + Add movie
           </Button>
-        ) : (
-          <button
-            type="button"
-            className={searchButton}
-            onClick={handleClickSearchButton}
-          />
         )}
       </header>
 

@@ -3,9 +3,9 @@ import { HomePageContext } from '@context/home';
 import { Tooltip, Prompt, Confirm, H3, H4 } from '@components/ui';
 import { confirmMessage } from '@assets/data';
 import { ICard } from './models';
-import classes from './Card.module.scss';
 import { getValueYearFrom } from '@helpers/getValueYearFrom';
 import { scrollUp } from '@helpers/scrollUp';
+import classes from './Card.module.scss';
 
 interface CardProps {
   data: ICard;
@@ -44,6 +44,7 @@ export function Card({
   const HomePageCtx = useContext(HomePageContext);
   const handleClickImg = (): void => {
     HomePageCtx?.setSelectedMovie(data);
+    scrollUp();
   };
 
   return (
