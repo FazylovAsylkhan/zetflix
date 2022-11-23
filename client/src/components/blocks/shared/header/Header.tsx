@@ -14,34 +14,42 @@ export function Header({ parentClasses }: HeaderProps): JSX.Element {
   const [isShownPrompt, setIsShownPrompt] = useState(false);
   const HomePageCtx = useContext(HomePageContext);
   const stateSelectedMovie = HomePageCtx?.selectedMovie;
-  const isShownSeactButton = stateSelectedMovie !== undefined;
+  const isShownSearchButton = stateSelectedMovie !== undefined;
 
-  const handleClickSearchButton = (): void => {
-    HomePageCtx?.setSelectedMovie(undefined);
+  const renderSearchButton = (): JSX.Element => {
+    const handleClickSearchButton = (): void => {
+      HomePageCtx?.setSelectedMovie(undefined);
+    };
+
+    return (
+      <button
+        type="button"
+        className={searchButton}
+        onClick={handleClickSearchButton}
+      />
+    );
   };
 
-  const handleClickAddButton = (): void => {
-    setIsShownPrompt(!isShownPrompt);
+  const renderAddButton = (): JSX.Element => {
+    const handleClickAddButton = (): void => {
+      setIsShownPrompt(!isShownPrompt);
+    };
+
+    return (
+      <Button
+        stylesType="light"
+        type="button"
+        onClick={() => handleClickAddButton()}>
+        + Add movie
+      </Button>
+    );
   };
 
   return (
     <>
       <header className={joinClasses(parentClasses, header)}>
         <Logo />
-        {isShownSeactButton ? (
-          <button
-            type="button"
-            className={searchButton}
-            onClick={handleClickSearchButton}
-          />
-        ) : (
-          <Button
-            stylesType="light"
-            type="button"
-            onClick={() => handleClickAddButton()}>
-            + Add movie
-          </Button>
-        )}
+        {isShownSearchButton ? renderSearchButton() : renderAddButton()}
       </header>
 
       {isShownPrompt && (

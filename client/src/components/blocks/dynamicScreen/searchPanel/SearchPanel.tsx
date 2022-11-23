@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../shared';
+import { Header } from '@components/blocks/shared';
 import { SearchForm } from './searchForm';
 import generalClasses from '@scss/style.module.scss';
 import classes from './SearchPanel.module.scss';

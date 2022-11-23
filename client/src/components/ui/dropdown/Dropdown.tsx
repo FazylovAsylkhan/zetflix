@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { joinClasses } from '@helpers/joinClasses';
 import { useCatchingEventOutsideElement } from '@hooks/useCatchingEventOutsideElement';
 import { DropdownItem } from './dropdownItem';
@@ -42,6 +42,9 @@ export function Dropdown({
   useCatchingEventOutsideElement('mousedown', refDropdown, () =>
     setIsOpened(false)
   );
+  useEffect(() => {
+    setItems(initialItems);
+  }, [initialItems]);
 
   return (
     <div ref={refDropdown} className={joinClasses(parentClasses, dropdown)}>

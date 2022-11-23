@@ -12,6 +12,8 @@ interface MovieProps {
 export function Movie({ data }: MovieProps): JSX.Element {
   const { movie, box, header, row, img, description, mr50, mr20 } = classes;
   const { image, title, subtitle, date, runtime, overview, rating } = data;
+  const year = getValueYearFrom(date);
+  const formattedRuntime = formateToHoursAndMinutes(runtime);
 
   return (
     <div className={movie}>
@@ -26,9 +28,9 @@ export function Movie({ data }: MovieProps): JSX.Element {
         </div>
         <div className={row}>
           <H4 parentClasses={mr50} stylesType="red">
-            {getValueYearFrom(date)}
+            {year}
           </H4>
-          <H4 stylesType="red">{formateToHoursAndMinutes(runtime)}</H4>
+          <H4 stylesType="red">{formattedRuntime}</H4>
         </div>
         <P parentClasses={description}>{overview}</P>
       </div>

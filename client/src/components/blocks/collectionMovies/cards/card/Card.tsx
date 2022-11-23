@@ -30,13 +30,13 @@ export function Card({
   };
 
   const handleClickPrompt = (state: boolean): void => {
-    if (state) scrollUp();
+    state && scrollUp();
     setIsShownPrompt(state);
     setIsShownListOptions(false);
   };
 
   const handleClickConfirm = (state: boolean): void => {
-    if (state) scrollUp();
+    state && scrollUp();
     setIsShownConfirm(state);
     setIsShownListOptions(false);
   };

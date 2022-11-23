@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { joinClasses } from '@helpers/joinClasses';
 import classes from './Loader.module.scss';
+import { BlockingElement } from '../utils';
 
 interface LoaderProps {
   parentClasses?: string;
@@ -11,25 +12,11 @@ export function Loader({
   parentClasses,
   isWithBlockingWindow = false,
 }: LoaderProps): JSX.Element {
-  const { loader, wrapper, title, dot1, dot2, dot3, spinner, disableScroll } =
-    classes;
-
-  useEffect(() => {
-    let callback = (): void => {};
-    if (isWithBlockingWindow) {
-      window.scroll({ top: 0, left: 0 });
-      const bodyClassList = document.body.classList;
-      bodyClassList.add(disableScroll);
-      callback = () => {
-        bodyClassList.remove(disableScroll);
-      };
-    }
-
-    return () => callback();
-  });
+  const { loader, wrapper, title, dot1, dot2, dot3, spinner } = classes;
 
   return (
     <div className={joinClasses(parentClasses, loader)}>
+      {isWithBlockingWindow && <BlockingElement />}
       <div className={wrapper}>
         <h3 className={title}>
           Loading <span className={dot1}>.</span>

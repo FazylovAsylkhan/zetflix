@@ -34,7 +34,9 @@ export function getListCheckedGenres(
 ): IDropdownItem[] {
   const genresOfTheMovie = dataMovie.subtitle.split(', ');
 
-  return initialItems.map((item): IDropdownItem => {
+  const listCheckedGenres = initialItems.map((item): IDropdownItem => {
     return { ...item, isChecked: genresOfTheMovie.includes(item.value) };
   });
+
+  return listCheckedGenres;
 }

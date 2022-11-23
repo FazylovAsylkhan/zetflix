@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Header } from '../shared';
 import { HomePageContext } from '@context/home';
+import { Header } from '@components/blocks/shared';
 import { Movie } from './Movie';
 import generalClasses from '@scss/style.module.scss';
 import classes from './MovieDetails.module.scss';
@@ -14,7 +14,7 @@ export default function MovieDetails(): JSX.Element {
     <div className={container}>
       <div className={wrapper}>
         <Header parentClasses={header} />
-        {HomePageCtx?.selectedMovie != null && (
+        {HomePageCtx?.selectedMovie !== undefined && (
           <Movie data={HomePageCtx.selectedMovie} />
         )}
       </div>

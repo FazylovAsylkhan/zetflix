@@ -14,6 +14,7 @@ export function H3({
   children,
   parentClasses = '',
   stylesType = CLASSNAME_PRIMARY,
+  onClick,
 }: H3Props): JSX.Element {
   const { primary, small } = classes;
   const styles = {
@@ -21,7 +22,11 @@ export function H3({
     small: joinClasses(parentClasses, small),
   };
 
-  return <h3 className={styles[stylesType]}>{children}</h3>;
+  return (
+    <h3 onClick={onClick} className={styles[stylesType]}>
+      {children}
+    </h3>
+  );
 }
 
 export default H3;
