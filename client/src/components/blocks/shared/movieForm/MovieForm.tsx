@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from 'components/ui';
-import { MovieFormfields } from 'assets/data';
+import { MovieFormFields } from '@assets/data';
+import { Button } from '@components/ui';
+import { ICard } from '@components/blocks';
 import { Fields } from './fields';
-import { ICard } from 'components/blocks/collectionMovies/cards/card';
 import classes from './MovieForm.module.scss';
 
 interface MovieFormProps {
@@ -16,7 +16,7 @@ export function MovieForm({ handlerAlert, data }: MovieFormProps): JSX.Element {
 
   return (
     <div className={movieForm}>
-      <Fields data={stateData} fields={MovieFormfields} />
+      <Fields data={stateData} fields={MovieFormFields} />
       <div className={controller}>
         {stateData !== undefined && (
           <Button

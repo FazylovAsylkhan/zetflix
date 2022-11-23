@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { joinClasses } from 'helpers';
-import { useCatchingEventOutsideElement } from 'hooks';
-import { Option, ISelect } from './';
+import { useCatchingEventOutsideElement } from '@hooks/useCatchingEventOutsideElement';
+import { joinClasses } from '@helpers/joinClasses';
+import { ISelect } from './models';
+import { Option } from './option';
 import classes from './Select.module.scss';
 
 interface SelectProps {

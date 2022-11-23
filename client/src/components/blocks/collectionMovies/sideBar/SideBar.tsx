@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IMenuItem, Menu, Select, ISelect } from 'components/ui';
+import { IMenuItem, Menu, ISelect, Select } from '@components/ui';
 import classes from './SideBar.module.scss';
 
 interface SideBarProps {
@@ -9,7 +9,7 @@ interface SideBarProps {
 
 export function SideBar({ menu, select }: SideBarProps): JSX.Element {
   const { sideBar } = classes;
-  const initialValueSelectedSorting = select.listOptions[0];
+  const [initialValueSelectedSorting] = select.listOptions;
 
   const [valueSelectedSorting, setValueSelectedSorting] = useState(
     initialValueSelectedSorting

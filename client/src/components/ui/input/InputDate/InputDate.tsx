@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useCatchingEventOutsideElement } from 'hooks';
+import { useCatchingEventOutsideElement } from '@hooks/useCatchingEventOutsideElement';
 import { SelectGroup } from './selectGroup';
 import { Input } from '../Input';
 import classes from './InputDate.module.scss';

@@ -51,8 +51,3 @@ export function getUpdatedCardsOnClickTooltip(
 
   return updatedCards;
 }
-
-export function getYear(date: string): string {
-  const [, , year] = date.split('/');
-  return year;
-}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Background, ButtonClose, H2 } from 'components/ui';
+import { Modal, Background, ButtonClose, H2 } from '@components/ui';
 import classes from './Alert.module.scss';
 
 interface IMessage {
@@ -7,7 +7,7 @@ interface IMessage {
   description: string;
 }
 
-interface AlertPromps {
+interface AlertProps {
   message: IMessage;
   handlerButtonClose: () => void;
 }
@@ -15,7 +15,7 @@ interface AlertPromps {
 export function Alert({
   handlerButtonClose,
   message,
-}: AlertPromps): JSX.Element {
+}: AlertProps): JSX.Element {
   const { alert, modal, icon, wrapper, descriptionText } = classes;
   const { title, description } = message;
 

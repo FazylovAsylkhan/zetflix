@@ -1,5 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 57px;
+}
+.searchButton {
+  cursor: pointer;
+  background: url('../../../../assets/icons/searchButton.svg') center
+    center/cover;
+  width: 30px;
+  height: 30px;
 }

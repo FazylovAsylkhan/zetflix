@@ -1,9 +1,9 @@
 import React from 'react';
-import { H4 } from 'components/ui';
-import { dataCollectionMovies } from 'assets/data';
+import { H4 } from '@components/ui';
+import { dataCollectionMovies } from '@assets/data';
 import { SideBar } from './sideBar';
 import { Cards } from './cards';
-import generalClasses from 'scss/style.module.scss';
+import generalClasses from '@scss/style.module.scss';
 import classes from './CollectionMovies.module.scss';
 
 export function CollectionMovies(): JSX.Element {

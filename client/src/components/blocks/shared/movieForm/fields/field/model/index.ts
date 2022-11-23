@@ -1,5 +1,5 @@
-import { IDropdownItem } from '../../../../../../ui/dropdown/models';
-import { ICard } from '../../../../../collectionMovies/cards/card';
+import { ICard } from '@components/blocks';
+import { IDropdownItem } from '@components/ui';
 import { IField } from '../models';
 
 const TITLE_TEXT_TITLE = 'title';
@@ -34,7 +34,9 @@ export function getListCheckedGenres(
 ): IDropdownItem[] {
   const genresOfTheMovie = dataMovie.subtitle.split(', ');
 
-  return initialItems.map((item): IDropdownItem => {
+  const listCheckedGenres = initialItems.map((item): IDropdownItem => {
     return { ...item, isChecked: genresOfTheMovie.includes(item.value) };
   });
+
+  return listCheckedGenres;
 }

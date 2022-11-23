@@ -1,27 +1,60 @@
-import React, { useState } from 'react';
-import { Button, Prompt } from 'components/ui';
+import React, { useContext, useState } from 'react';
+import { Button, Prompt } from '@components/ui';
+import { HomePageContext } from '@context/home';
 import { Logo } from '../logo';
+import { joinClasses } from '@helpers/joinClasses';
 import classes from './Header.module.scss';
 
-export function Header(): JSX.Element {
-  const { header } = classes;
+interface HeaderProps {
+  parentClasses?: string;
+}
+
+export function Header({ parentClasses }: HeaderProps): JSX.Element {
+  const { header, searchButton } = classes;
   const [isShownPrompt, setIsShownPrompt] = useState(false);
+  const HomePageCtx = useContext(HomePageContext);
+  const stateSelectedMovie = HomePageCtx?.selectedMovie;
+  const isShownSearchButton = stateSelectedMovie !== undefined;
+
+  const renderSearchButton = (): JSX.Element => {
+    const handleClickSearchButton = (): void => {
+      HomePageCtx?.setSelectedMovie(undefined);
+    };
+
+    return (
+      <button
+        type="button"
+        className={searchButton}
+        onClick={handleClickSearchButton}
+      />
+    );
+  };
+
+  const renderAddButton = (): JSX.Element => {
+    const handleClickAddButton = (): void => {
+      setIsShownPrompt(!isShownPrompt);
+    };
+
+    return (
+      <Button
+        stylesType="light"
+        type="button"
+        onClick={() => handleClickAddButton()}>
+        + Add movie
+      </Button>
+    );
+  };
 
   return (
     <>
-      <header className={header}>
+      <header className={joinClasses(parentClasses, header)}>
         <Logo />
-        <Button
-          stylesType="light"
-          type="button"
-          onClick={() => setIsShownPrompt(!isShownPrompt)}>
-          + Add movie
-        </Button>
+        {isShownSearchButton ? renderSearchButton() : renderAddButton()}
       </header>
 
       {isShownPrompt && (
         <Prompt
-          title="EDIT MOVIE"
+          title="ADD MOVIE"
           handlerButtonClose={() => setIsShownPrompt(false)}
         />
       )}
