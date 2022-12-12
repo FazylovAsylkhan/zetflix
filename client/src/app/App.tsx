@@ -1,12 +1,16 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { HomePage } from '@pages/home';
-import { HomePageContextProvider } from '@context/home';
-import '@scss/style.module.scss';
+import { MovieContextProvider } from '@features/movies/context';
+import { store } from './store';
+import '@common/scss/style.module.scss';
 
 export function App(): JSX.Element {
   return (
-    <HomePageContextProvider>
-      <HomePage />
-    </HomePageContextProvider>
+    <Provider store={store}>
+      <MovieContextProvider>
+        <HomePage />
+      </MovieContextProvider>
+    </Provider>
   );
 }

@@ -1,0 +1,1 @@
+export { ConnectedCollectionMovies } from './CollectionMovies';

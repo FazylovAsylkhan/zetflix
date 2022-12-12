@@ -1,0 +1,1 @@
+export { SidebarMovie } from './SidebarMovie';

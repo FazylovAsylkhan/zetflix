@@ -1,0 +1,1 @@
+export { SearchFormMovie } from './SearchFormMovie';
