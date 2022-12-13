@@ -1,11 +1,4 @@
-import { IMovie } from './models';
-
-export interface IGetMoviesResponse {
-  data: IMovie[];
-  limit: number;
-  offset: number;
-  totalAmount: number;
-}
+import { IGetMoviesResponse } from './models';
 
 export async function getMovies(params: string): Promise<IGetMoviesResponse> {
   const baseUrl = 'http://localhost:4000';

@@ -12,3 +12,10 @@ export interface IMovie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface IGetMoviesResponse {
+  data: IMovie[];
+  limit: number;
+  offset: number;
+  totalAmount: number;
+}

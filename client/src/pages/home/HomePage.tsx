@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ConnectedCollectionMovies,
+  CollectionMovies,
   DynamicScreen,
   Footer,
 } from '@features/movies/layouts';
@@ -11,7 +11,7 @@ export function HomePage(): JSX.Element {
     <ErrorBoundary>
       <DynamicScreen />
       <HorizontalRule />
-      <ConnectedCollectionMovies />
+      <CollectionMovies />
       <Footer />
     </ErrorBoundary>
   );

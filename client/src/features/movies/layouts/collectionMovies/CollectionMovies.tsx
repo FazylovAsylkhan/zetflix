@@ -1,80 +1,82 @@
 import React, { useContext, useEffect } from 'react';
 import { SidebarMovie, CardsMovie } from '@features/movies/containers';
 import { Collection, TotalCount } from './components';
-import { IRootState } from '@app/store';
 import {
-  IFetchMoviesState,
   loadMovies,
-} from '@features/movies/services/fetchMovies';
-import { connect, ConnectedProps } from 'react-redux';
-import { ICardMovie } from '@features/movies/containers/cardsMovie';
+  selectMovies,
+  selectUrlParams,
+} from '@features/movies/services/store';
 import { Loader } from '@common/components';
 import { MovieContext } from '@features/movies/context';
-import {
-  SelectOptions,
-  sortingParams,
-} from '@features/movies/containers/sidebarMovie/constants';
+import { SelectOptions } from '@features/movies/containers/sidebarMovie';
+import { useAppDispatch, useAppSelector } from '@common/hooks';
+import { getNormalizedParams } from '@common/helpers';
+import { filter, sortBy } from '@features/movies/services/store/actions';
 
-export function CollectionMovies(props: PropsFromStore): JSX.Element {
-  const { loadedData, loadNewMovies } = props;
-  const { data, isFetching, error } = loadedData;
-
+export function CollectionMovies(): JSX.Element {
   const MovieCtx = useContext(MovieContext);
+  const dispatch = useAppDispatch();
+  const urlParams = useAppSelector(selectUrlParams);
+  const { data, isFetching, error } = useAppSelector(selectMovies);
+  const { movies, totalAmount } = data;
+  const cardsMovie = movies.map((movie) => ({
+    ...movie,
+    stateTooltip: {
+      isShownTooltip: false,
+      isShownListOptions: false,
+    },
+  }));
 
   useEffect(() => {
-    loadNewMovies(MovieCtx?.stateCurrentUrl.currentUrlParams);
-  }, [MovieCtx?.stateCurrentUrl.currentUrlParams, loadNewMovies]);
+    const normalizedUrl = getNormalizedParams(
+      urlParams.sortBy,
+      urlParams.sortOrder,
+      urlParams.search,
+      urlParams.searchBy,
+      urlParams.filter,
+      urlParams.limit
+    );
+
+    loadMovies(normalizedUrl)(dispatch);
+  }, [urlParams, dispatch]);
 
   const handleChangeSorting = (selectedSorting: string): void => {
     MovieCtx?.stateMovie.setSelectedMovie(undefined);
+    const SORTING_VOTE_AVERAGE = 'vote_average';
 
     switch (selectedSorting) {
-      case SelectOptions.VOTE_COUNT:
       case SelectOptions.POPULARITY:
+        dispatch(sortBy(SORTING_VOTE_AVERAGE));
+        break;
+      case SelectOptions.VOTE_COUNT:
       case SelectOptions.BUDGET:
-        MovieCtx?.stateSortingParams.setSortingParams(
-          sortingParams[selectedSorting]
-        );
+        dispatch(sortBy(selectedSorting));
         break;
       default:
-        MovieCtx?.stateSortingParams.setSortingParams(
-          sortingParams[SelectOptions.RELEASE_DATE]
-        );
+        dispatch(sortBy(SelectOptions.RELEASE_DATE));
     }
   };
 
   const handleChangeGenre = (selectedGenre: string): void => {
     MovieCtx?.stateMovie.setSelectedMovie(undefined);
-    MovieCtx?.stateGenreParams.setGenreParams(`filter=${selectedGenre}`);
+
+    dispatch(filter(selectedGenre));
   };
 
   return (
     <>
       {error !== null && <div>{error}</div>}
       {isFetching && <Loader isWithBlockingWindow={true} />}
-      {!Number.isNaN(data.totalAmount) && (
+      {movies.length !== 0 && (
         <Collection>
           <SidebarMovie
             onChangeSorting={handleChangeSorting}
             onChangeGenre={handleChangeGenre}
           />
-          <TotalCount value={data.totalAmount} />
-          <CardsMovie dataCards={data.cards} />
+          <TotalCount value={totalAmount} />
+          <CardsMovie cardsMovie={cardsMovie} />
         </Collection>
       )}
     </>
   );
 }
-
-const mapStateToProps = (
-  state: IRootState
-): { loadedData: IFetchMoviesState<ICardMovie[]> } => ({
-  loadedData: state.fetchMoviesReducer,
-});
-const mapDispatchToProps = {
-  loadNewMovies: loadMovies,
-};
-
-const connectToStore = connect(mapStateToProps, mapDispatchToProps);
-type PropsFromStore = ConnectedProps<typeof connectToStore>;
-export const ConnectedCollectionMovies = connectToStore(CollectionMovies);

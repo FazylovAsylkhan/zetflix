@@ -1,3 +1,3 @@
 export { DynamicScreen } from './dynamicScreen';
 export { Footer } from './footer';
-export { ConnectedCollectionMovies } from './collectionMovies';
+export { CollectionMovies } from './collectionMovies';

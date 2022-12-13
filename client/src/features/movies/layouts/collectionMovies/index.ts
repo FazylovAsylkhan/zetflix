@@ -1,1 +1,1 @@
-export { ConnectedCollectionMovies } from './CollectionMovies';
+export { CollectionMovies } from './CollectionMovies';

@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import { fetchMoviesReducer } from '@features/movies/services/fetchMovies';
+import {
+  fetchMoviesReducer,
+  urlParamsReducer,
+} from '@features/movies/services/store';
 
 export const rootReducer = combineReducers({
-  fetchMoviesReducer,
+  movies: fetchMoviesReducer,
+  urlParams: urlParamsReducer,
 });

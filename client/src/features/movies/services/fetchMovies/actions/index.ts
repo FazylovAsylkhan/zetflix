@@ -1,1 +1,0 @@
-export { loadMovies } from './thunks';

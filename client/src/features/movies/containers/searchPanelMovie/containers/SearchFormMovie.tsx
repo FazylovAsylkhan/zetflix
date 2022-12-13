@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react';
-import { MovieContext } from '@features/movies/context';
+import React, { useState } from 'react';
 import { SearchForm } from '../components';
+import { useAppDispatch } from '@common/hooks';
+import { search } from '@features/movies/services/store/actions';
 
 export function SearchFormMovie(): JSX.Element {
   const [value, setValue] = useState('');
-  const MovieCtx = useContext(MovieContext);
+  const dispatch = useAppDispatch();
 
   const handleClick = (e: React.MouseEvent): void => {
     e.preventDefault();
-    MovieCtx?.stateSearchParams.setSearchParams(`search=${value}`);
+    dispatch(search(value));
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value);

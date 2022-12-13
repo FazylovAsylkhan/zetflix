@@ -19,13 +19,6 @@ const selectOptions = [
   SelectOptions.VOTE_COUNT,
 ];
 
-export const sortingParams = {
-  [SelectOptions.VOTE_COUNT]: 'sortBy=vote_count',
-  [SelectOptions.POPULARITY]: 'sortBy=vote_average',
-  [SelectOptions.BUDGET]: 'sortBy=budget',
-  [SelectOptions.RELEASE_DATE]: 'sortBy=release_date',
-};
-
 export const dataSidebarMovie = {
   menuGenres,
   select: {
