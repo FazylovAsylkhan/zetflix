@@ -23,12 +23,9 @@
     "paths": {
       "@app/*": ["app/*"],
       "@assets/*": ["assets/*"],
-      "@components/*": ["components/*"],
-      "@context/*": ["context/*"],
-      "@helpers/*": ["helpers/*"],
-      "@hooks/*": ["hooks/*"],
-      "@pages/*": ["pages/*"],
-      "@scss/*": ["scss/*"]
+      "@common/*": ["common/*"],
+      "@features/*": ["features/*"],
+      "@pages/*": ["pages/*"]
     }
   },
   "include": ["src/**/*", "./declaration.d.ts"],

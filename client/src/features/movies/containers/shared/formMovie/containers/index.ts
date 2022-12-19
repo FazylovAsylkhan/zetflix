@@ -1,0 +1,1 @@
+export { FieldsMovie } from './FieldsMovie';

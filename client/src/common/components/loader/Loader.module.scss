@@ -1,0 +1,45 @@
+.loader {
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: fixed;
+  background-color: rgba(16, 2, 2, 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  font-size: 2rem;
+  color: #f65261;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 14%;
+}
+.dot1 {
+  margin-left: 5px;
+  animation: 3s linear 3s infinite dot;
+}
+.dot2 {
+  margin-left: 5px;
+  animation: 3s linear 2s infinite dot;
+}
+.dot3 {
+  margin-left: 5px;
+  animation: 3s linear 1s infinite dot;
+}
+
+@keyframes dot {
+  0% {
+    opacity: 100;
+  }
+  50% {
+    opacity: 0;
+  }
+}

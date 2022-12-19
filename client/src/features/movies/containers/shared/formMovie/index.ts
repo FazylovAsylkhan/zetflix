@@ -1,0 +1,1 @@
+export { FormMovie } from './FormMovie';
