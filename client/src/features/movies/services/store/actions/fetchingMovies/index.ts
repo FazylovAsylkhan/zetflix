@@ -1,0 +1,1 @@
+export { fetchingMovies } from './thunks';

@@ -1,2 +1,11 @@
-export { loadMovies } from './thunks';
-export { sortBy, search, searchBy, filter, limit } from './actionCreators';
+export { fetchingMovies } from './fetchingMovies';
+export { fetchingMovie, removeMovie } from './fetchingMovie';
+export { resetMovieId, setMovieId } from './changingMovieId';
+export {
+  sortBy,
+  sortOrder,
+  search,
+  searchBy,
+  filter,
+  limit,
+} from './changingParams';

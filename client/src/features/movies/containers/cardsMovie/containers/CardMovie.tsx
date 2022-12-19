@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { confirmMessage } from '@assets/data';
 import { Confirm, Tooltip } from '@common/components';
 import { scrollUp } from '@common/helpers';
-import { MovieContext } from '@features/movies/context';
 import { FormMovie } from '../../shared/formMovie';
 import { Card } from '../components/card';
 import { ICardMovie } from '../models';
+import { useAppDispatch } from '@common/hooks';
+import { setMovieId } from '@features/movies/services/store';
 
 interface CardMovieProps {
   dataCardMovie: ICardMovie;
@@ -17,6 +18,7 @@ export function CardMovie({
   onHover,
   onClickTooltip,
 }: CardMovieProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const { id, stateTooltip } = dataCardMovie;
   const { isShownTooltip, isShownListOptions } = stateTooltip;
   const [isShownFormMovie, setIsShownFormMovie] = useState(false);
@@ -42,9 +44,8 @@ export function CardMovie({
     setIsShownListOptions(false);
   };
 
-  const MovieCtx = useContext(MovieContext);
   const handleClickImgOrTitle = (): void => {
-    MovieCtx?.stateMovie.setSelectedMovie(dataCardMovie);
+    dispatch(setMovieId(dataCardMovie.id));
     scrollUp();
   };
 

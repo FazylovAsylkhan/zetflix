@@ -13,7 +13,7 @@ export interface IMovie {
   vote_count: number;
 }
 
-export interface IGetMoviesResponse {
+export interface IMovies {
   data: IMovie[];
   limit: number;
   offset: number;

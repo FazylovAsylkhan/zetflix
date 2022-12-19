@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@common/components';
 import { FormMovie } from '../formMovie';
 import { Header } from './components/header';
-import { MovieContext } from '@features/movies/context';
+import { useAppDispatch, useAppSelector } from '@common/hooks';
+import { resetMovieId, selectMovieId } from '@features/movies/services/store';
 
 interface HeaderMovieProps {
   parentClasses?: string;
@@ -11,13 +12,13 @@ interface HeaderMovieProps {
 export function HeaderMovie({ parentClasses }: HeaderMovieProps): JSX.Element {
   const [isShownFormMovie, setIsShownFormMovies] = useState(false);
 
-  const MovieCtx = useContext(MovieContext);
-  const stateSelectedMovie = MovieCtx?.stateMovie.selectedMovie;
-  const isShownSearchButton = stateSelectedMovie !== undefined;
+  const dispatch = useAppDispatch();
+  const movieId = useAppSelector(selectMovieId);
+  const isShownSearchButton = movieId !== '';
 
   const renderSearchButton = (): JSX.Element => {
     const handleClickSearchButton = (): void => {
-      MovieCtx?.stateMovie.setSelectedMovie(undefined);
+      dispatch(resetMovieId());
     };
 
     return (
@@ -39,13 +40,13 @@ export function HeaderMovie({ parentClasses }: HeaderMovieProps): JSX.Element {
       </Button>
     );
   };
-  const renderedButton = isShownSearchButton
-    ? renderSearchButton()
-    : renderAddButton();
 
   return (
     <>
-      <Header parentClasses={parentClasses}>{renderedButton}</Header>
+      <Header parentClasses={parentClasses}>
+        {isShownSearchButton ? renderSearchButton() : renderAddButton()}
+      </Header>
+
       {isShownFormMovie && (
         <FormMovie handlerButtonClose={() => setIsShownFormMovies(false)} />
       )}

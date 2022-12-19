@@ -1,2 +1,2 @@
-export { getMovies } from './getMovies';
-export type { IMovie, IGetMoviesResponse } from './models';
+export { getMovies, getMovie } from './get';
+export type { IMovie, IMovies } from './models';

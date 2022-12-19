@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/default-param-last */
-import { IUrlParamsState, UrlParamsActions } from '../models';
-import { IUrlParamsActions } from '../models/urlParams';
+import { ParamsActions, IParamsActions, IParamsState } from '../models';
 
 const LIMITED_ITEMS = 'limit=9';
 const SORT_BY_RELEASE_DATE = 'sortBy=release_date';
 const SORT_ORDER_DESC = 'sortOrder=desc';
 const SEARCH_BY_TITLE = 'searchBy=title';
 
-const initialStateUrlParams: IUrlParamsState = {
+const initialStateParams = {
   sortBy: SORT_BY_RELEASE_DATE,
   sortOrder: SORT_ORDER_DESC,
   search: '',
@@ -16,38 +15,38 @@ const initialStateUrlParams: IUrlParamsState = {
   limit: LIMITED_ITEMS,
 };
 
-export function urlParamsReducer(
-  state = initialStateUrlParams,
-  action: IUrlParamsActions
-): IUrlParamsState {
+export function changingParamsReducer(
+  state = initialStateParams,
+  action: IParamsActions
+): IParamsState {
   switch (action.type) {
-    case UrlParamsActions.SORT_BY:
+    case ParamsActions.SORT_BY:
       return {
         ...state,
         sortBy: action.payload,
       };
-    case UrlParamsActions.SORT_ORDER:
+    case ParamsActions.SORT_ORDER:
       return {
         ...state,
         sortOrder: action.payload,
       };
-    case UrlParamsActions.SEARCH:
+    case ParamsActions.SEARCH:
       return {
         ...state,
         search: action.payload,
         searchBy: action.payload === '' ? '' : SEARCH_BY_TITLE,
       };
-    case UrlParamsActions.SEARCH_BY:
+    case ParamsActions.SEARCH_BY:
       return {
         ...state,
         searchBy: action.payload,
       };
-    case UrlParamsActions.FILTER:
+    case ParamsActions.FILTER:
       return {
         ...state,
         filter: action.payload,
       };
-    case UrlParamsActions.LIMIT:
+    case ParamsActions.LIMIT:
       return {
         ...state,
         limit: action.payload,

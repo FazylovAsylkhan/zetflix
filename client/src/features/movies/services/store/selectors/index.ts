@@ -1,9 +1,18 @@
 import { IRootState } from '@app/store';
-import { IDataMovies, IFetchMoviesState, IUrlParamsState } from '../models';
+import {
+  IFetchingMoviesState,
+  IFetchingMovieState,
+  IParamsState,
+} from '../models';
 
-export const selectMovies = (
-  state: IRootState
-): IFetchMoviesState<IDataMovies> => state.movies;
+export const selectAllMovies = (state: IRootState): IFetchingMoviesState =>
+  state.movies.allMovies;
 
-export const selectUrlParams = (state: IRootState): IUrlParamsState =>
-  state.urlParams;
+export const selectMovie = (state: IRootState): IFetchingMovieState =>
+  state.movies.selectedMovieById;
+
+export const selectParams = (state: IRootState): IParamsState =>
+  state.movies.params;
+
+export const selectMovieId = (state: IRootState): string =>
+  state.movies.movieId;

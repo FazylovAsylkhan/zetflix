@@ -5,15 +5,15 @@ import { CardMovie } from './containers/CardMovie';
 import { ICardMovie } from './models';
 
 interface CardsMovieProps {
-  cardsMovie: ICardMovie[];
+  cardsMovies: ICardMovie[];
 }
 
-export function CardsMovie({ cardsMovie }: CardsMovieProps): JSX.Element {
-  const [cards, setCards] = useState(cardsMovie);
+export function CardsMovie({ cardsMovies }: CardsMovieProps): JSX.Element {
+  const [cards, setCards] = useState(cardsMovies);
 
   useEffect(() => {
-    setCards(cardsMovie);
-  }, [cardsMovie]);
+    setCards(cardsMovies);
+  }, [cardsMovies]);
 
   const handleHover = (id: number, isShownTooltip: boolean): void => {
     const updatedCards = getUpdatedCardsOnHover(cards, id, isShownTooltip);

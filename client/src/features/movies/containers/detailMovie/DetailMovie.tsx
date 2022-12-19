@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Movie, Detail } from './components';
 import { HeaderMovie } from '../shared/headerMovie';
-import { MovieContext } from '@features/movies/context';
+import { IMovie } from '@features/movies/api';
 
-export default function MovieDetails(): JSX.Element {
-  const MovieCtx = useContext(MovieContext);
+interface MovieDetailsProps {
+  movie: IMovie;
+}
+
+export default function MovieDetails(props: MovieDetailsProps): JSX.Element {
+  const { movie } = props;
 
   return (
     <Detail>
       <HeaderMovie />
-      {MovieCtx?.stateMovie.selectedMovie !== undefined && (
-        <Movie data={MovieCtx.stateMovie.selectedMovie} />
-      )}
+      <Movie data={movie} />
     </Detail>
   );
 }
