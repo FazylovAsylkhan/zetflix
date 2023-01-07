@@ -1,69 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { joinClasses } from '@common/helpers';
 import { useCatchingEventOutsideElement } from '@common/hooks';
-import { DropdownItem } from './dropdownItem';
-import type { IDropdownItem } from './models';
+import { Option } from './option';
 import classes from './Dropdown.module.scss';
 
 interface DropdownProps {
-  initialItems: IDropdownItem[];
+  value: string[];
+  options: string[];
   parentClasses?: string;
-  defaultValue: string;
+  label: string;
+  name: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
-export function Dropdown({
-  initialItems,
-  defaultValue,
-  parentClasses = '',
-}: DropdownProps): JSX.Element {
-  const { openedSelector, closedSelector, dropdown, list } = classes;
-  const [isOpened, setIsOpened] = useState(false);
-  const [items, setItems] = useState(initialItems);
-  const stateStyles = isOpened ? openedSelector : closedSelector;
 
+export function Dropdown(props: DropdownProps): JSX.Element {
+  const { name, onChange, options, value, label, parentClasses = '' } = props;
+  const { openedSelector, closedSelector, dropdown, select } = classes;
+  const [isOpened, setIsOpened] = useState(false);
+  const stateStyles = isOpened ? openedSelector : closedSelector;
   const handleClick = (): void => {
     setIsOpened(!isOpened);
-  };
-
-  const handlerClick = (index: number): void => {
-    const updatedItems = items.map((item, i) => {
-      const { value, isChecked } = item;
-      const updatedItem = {
-        value,
-        isChecked: !isChecked,
-      };
-
-      return index === i ? updatedItem : item;
-    });
-
-    setItems(updatedItems);
   };
 
   const refDropdown = useRef(null);
   useCatchingEventOutsideElement('mousedown', refDropdown, () =>
     setIsOpened(false)
   );
-  useEffect(() => {
-    setItems(initialItems);
-  }, [initialItems]);
 
   return (
     <div ref={refDropdown} className={joinClasses(parentClasses, dropdown)}>
       <button
         type="button"
+        id={name}
         className={stateStyles}
         onClick={() => handleClick()}>
-        {defaultValue}
+        {label}
       </button>
       {isOpened && (
-        <ul className={list}>
-          {items.map((item, i) => (
-            <DropdownItem
-              key={item.value}
-              item={item}
-              handlerClick={() => handlerClick(i)}
-            />
+        <select
+          name={name}
+          className={select}
+          multiple
+          value={value}
+          onChange={onChange}>
+          {options.map((option) => (
+            <Option key={option} option={option} />
           ))}
-        </ul>
+        </select>
       )}
     </div>
   );

@@ -26,6 +26,7 @@ export function SearchForm({
         <Input
           onChange={setValue}
           value={value}
+          name="search"
           placeholder="What do you want to watch?"
           parentClasses={input}
         />

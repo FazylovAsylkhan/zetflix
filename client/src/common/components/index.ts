@@ -16,4 +16,3 @@ export { Img } from './Img';
 
 export type { IMenuItem } from './menu';
 export type { ISelect } from './select';
-export type { IDropdownItem } from './dropdown';

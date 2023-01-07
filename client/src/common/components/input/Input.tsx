@@ -6,6 +6,7 @@ interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   id?: string;
   parentClasses?: string;
   value: string;
+  name: string;
 }
 
 export function Input({
@@ -13,7 +14,9 @@ export function Input({
   value,
   parentClasses,
   id,
+  name,
   onChange,
+  onBlur,
 }: InputProps): JSX.Element {
   const { input } = classes;
 
@@ -23,7 +26,9 @@ export function Input({
       className={joinClasses(parentClasses, input)}
       onChange={onChange}
       value={value}
+      name={name}
       placeholder={placeholder}
+      onBlur={onBlur}
     />
   );
 }

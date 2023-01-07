@@ -35,14 +35,21 @@ export function CardsMovie({ cardsMovies }: CardsMovieProps): JSX.Element {
   return (
     <Cards>
       {cards.map((card) => {
-        return (
-          <CardMovie
-            key={card.id}
-            dataCardMovie={card}
-            onHover={handleHover}
-            onClickTooltip={handleClickTooltip}
-          />
-        );
+        if (card.id !== undefined) {
+          return (
+            <CardMovie
+              key={card.id}
+              data={{
+                id: card.id,
+                cardMovie: card,
+              }}
+              onChange={{
+                onHover: handleHover,
+                onClickTooltip: handleClickTooltip,
+              }}
+            />
+          );
+        } else return null;
       })}
     </Cards>
   );

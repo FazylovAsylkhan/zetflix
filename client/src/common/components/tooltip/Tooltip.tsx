@@ -8,7 +8,7 @@ interface TooltipsProps {
     setIsShownListOptions: (state: boolean) => void;
   };
   onClickButtonEdit: (state: boolean) => void;
-  onClickButtonDelete: (state: boolean) => void;
+  onClickButtonDelete: () => void;
 }
 
 export function Tooltip({
@@ -41,7 +41,7 @@ export function Tooltip({
           <button
             type="button"
             className={button}
-            onClick={() => onClickButtonDelete(true)}>
+            onClick={onClickButtonDelete}>
             Delete
           </button>
         </Modal>

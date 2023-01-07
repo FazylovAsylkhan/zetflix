@@ -10,20 +10,6 @@ export const arrNamesField = [
   NamesFields.OVERVIEW,
 ];
 
-export const defaultGenres = [
-  { isChecked: false, value: 'Crime' },
-  { isChecked: false, value: 'Documentary' },
-  { isChecked: false, value: 'Horror' },
-  { isChecked: false, value: 'Comedy' },
-  { isChecked: false, value: 'Action' },
-  { isChecked: false, value: 'Adventure' },
-  { isChecked: false, value: 'Drama' },
-  { isChecked: false, value: 'Biography' },
-  { isChecked: false, value: 'Music' },
-  { isChecked: false, value: 'Thriller' },
-  { isChecked: false, value: 'Sci-Fi' },
-];
-
 export const dataFields = {
   [NamesFields.TITLE_MOVIE]: {
     title: 'title',
@@ -43,7 +29,20 @@ export const dataFields = {
   },
   [NamesFields.GENRE]: {
     title: 'GENRE',
-    placeholder: 'Select Genre',
+    label: 'Select Genre',
+    options: [
+      'Crime',
+      'Documentary',
+      'Horror',
+      'Comedy',
+      'Action',
+      'Adventure',
+      'Drama',
+      'Biography',
+      'Music',
+      'Thriller',
+      'Sci-Fi',
+    ],
   },
   [NamesFields.RUNTIME]: {
     title: 'RUNTIME',

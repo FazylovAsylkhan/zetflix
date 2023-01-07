@@ -3,7 +3,7 @@
   position: relative;
 }
 
-.list {
+.select {
   margin-top: 3px;
   position: absolute;
   top: 57px;
@@ -14,14 +14,13 @@
   border-radius: 4px;
   width: 100%;
   border-radius: 4px;
-  background: rgba(35, 35, 35, 0.918051);
+  background: rgba(35, 35, 35, 1);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.1),
     0px 10px 20px rgba(0, 0, 0, 0.1), 0px 10px 50px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(13.5914px);
   max-height: 200px;
   overflow: auto;
 }
-
 .openedSelector,
 .closedSelector {
   position: relative;
@@ -35,6 +34,7 @@
   height: 59px;
   width: 100%;
   opacity: 0.8;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   &::before {

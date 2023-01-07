@@ -5,22 +5,3 @@
 .box {
   position: relative;
 }
-.button {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: transparent;
-  cursor: pointer;
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20px;
-    width: 24px;
-    height: 22px;
-    background: url('../../../../assets/icons/calendarIcon.svg');
-  }
-}

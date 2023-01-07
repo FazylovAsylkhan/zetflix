@@ -3,7 +3,10 @@ import { Button } from '@common/components';
 import { FormMovie } from '../formMovie';
 import { Header } from './components/header';
 import { useAppDispatch, useAppSelector } from '@common/hooks';
-import { resetMovieId, selectMovieId } from '@features/movies/services/store';
+import {
+  resetDynamicScreen,
+  selectCardMovie,
+} from '@features/movies/services/redux';
 
 interface HeaderMovieProps {
   parentClasses?: string;
@@ -13,12 +16,12 @@ export function HeaderMovie({ parentClasses }: HeaderMovieProps): JSX.Element {
   const [isShownFormMovie, setIsShownFormMovies] = useState(false);
 
   const dispatch = useAppDispatch();
-  const movieId = useAppSelector(selectMovieId);
-  const isShownSearchButton = movieId !== '';
+  const cardMovie = useAppSelector(selectCardMovie);
+  const isShownSearchButton = cardMovie.dynamicScreen !== null;
 
   const renderSearchButton = (): JSX.Element => {
     const handleClickSearchButton = (): void => {
-      dispatch(resetMovieId());
+      dispatch(resetDynamicScreen());
     };
 
     return (
@@ -48,7 +51,10 @@ export function HeaderMovie({ parentClasses }: HeaderMovieProps): JSX.Element {
       </Header>
 
       {isShownFormMovie && (
-        <FormMovie handlerButtonClose={() => setIsShownFormMovies(false)} />
+        <FormMovie
+          title="add Movie"
+          handlerButtonClose={() => setIsShownFormMovies(false)}
+        />
       )}
     </>
   );

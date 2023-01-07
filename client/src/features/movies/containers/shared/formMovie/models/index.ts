@@ -1,30 +1,23 @@
-import { IDropdownItem } from '@common/components';
+import { FormikErrors } from 'formik';
 
 export enum NamesFields {
-  TITLE_MOVIE = 'titleMovie',
-  URL_IMAGE = 'urlImage',
+  TITLE_MOVIE = 'title',
+  URL_IMAGE = 'poster_path',
   RUNTIME = 'runtime',
-  RATING = 'rating',
-  GENRE = 'genre',
-  RELEASE_DATE = 'releaseDate',
+  RATING = 'vote_average',
+  GENRE = 'genres',
+  RELEASE_DATE = 'release_date',
   OVERVIEW = 'overview',
 }
 
-export interface IFieldsData {
+export interface IFormValues {
   [NamesFields.TITLE_MOVIE]: string;
   [NamesFields.RELEASE_DATE]: string;
-  [NamesFields.GENRE]: IDropdownItem[];
-  [NamesFields.OVERVIEW]: string;
-  [NamesFields.RATING]: string;
-  [NamesFields.RUNTIME]: string;
   [NamesFields.URL_IMAGE]: string;
+  [NamesFields.RATING]: string;
+  [NamesFields.GENRE]: string;
+  [NamesFields.RUNTIME]: string;
+  [NamesFields.OVERVIEW]: string;
 }
 
-export type INamesField =
-  | NamesFields.TITLE_MOVIE
-  | NamesFields.RELEASE_DATE
-  | NamesFields.GENRE
-  | NamesFields.OVERVIEW
-  | NamesFields.RATING
-  | NamesFields.RUNTIME
-  | NamesFields.URL_IMAGE;
+export type IFormErrors = FormikErrors<IFormValues>;

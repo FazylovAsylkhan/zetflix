@@ -1,0 +1,1 @@
+export { movieValidation } from './movieValidation';
