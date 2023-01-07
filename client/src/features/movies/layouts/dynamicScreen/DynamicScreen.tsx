@@ -1,39 +1,24 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { SearchPanelMovie } from '@features/movies/containers';
 import { LoaderScreen } from './components/loaderScreen';
-import { Loader } from '@common/components';
-import { useAppDispatch, useAppSelector } from '@common/hooks';
-import {
-  fetchingMovie,
-  removeMovie,
-  selectMovie,
-  selectMovieId,
-} from '@features/movies/services/store';
+import { useAppSelector } from '@common/hooks';
+import { selectCardMovie } from '@features/movies/services/redux';
 
 const DetailMovie = React.lazy(
   async () => await import('@features/movies/containers/detailMovie')
 );
 
 export function DynamicScreen(): JSX.Element {
-  const { response, isFetching, error } = useAppSelector(selectMovie);
-
-  const dispatch = useAppDispatch();
-  const movieId = useAppSelector(selectMovieId);
-
-  useLayoutEffect(() => {
-    const hasMovieId = movieId !== '';
-    hasMovieId ? fetchingMovie(movieId)(dispatch) : dispatch(removeMovie());
-  }, [dispatch, movieId]);
+  const cardMovie = useAppSelector(selectCardMovie);
+  console.log(cardMovie);
 
   return (
     <LoaderScreen>
-      {response !== null ? (
-        <DetailMovie movie={response} />
+      {cardMovie.dynamicScreen !== null ? (
+        <DetailMovie cardMovie={cardMovie.dynamicScreen} />
       ) : (
         <SearchPanelMovie />
       )}
-      {isFetching && <Loader isWithBlockingWindow />}
-      {error !== null && <div>{error}</div>}
     </LoaderScreen>
   );
 }

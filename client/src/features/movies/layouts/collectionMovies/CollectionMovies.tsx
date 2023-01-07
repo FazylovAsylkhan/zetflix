@@ -5,10 +5,10 @@ import {
   filter,
   sortBy,
   selectAllMovies,
-  selectParams,
-  resetMovieId,
-  fetchingMovies,
-} from '@features/movies/services/store';
+  resetDynamicScreen,
+  getCollectionMovies,
+  selectUrlParams,
+} from '@features/movies/services/redux';
 import { Loader } from '@common/components';
 import { SelectOptions } from '@features/movies/containers/sidebarMovie';
 import { useAppDispatch, useAppSelector } from '@common/hooks';
@@ -17,7 +17,7 @@ import { ICardMovie } from '@features/movies/containers/cardsMovie';
 
 export function CollectionMovies(): JSX.Element {
   const dispatch = useAppDispatch();
-  const params = useAppSelector(selectParams);
+  const params = useAppSelector(selectUrlParams);
   const { response, isFetching, error } = useAppSelector(selectAllMovies);
 
   const [cardsMovies, setCardsMovies] = useState<ICardMovie[]>([]);
@@ -45,11 +45,11 @@ export function CollectionMovies(): JSX.Element {
       params.limit
     );
 
-    fetchingMovies(normalizedUrl)(dispatch);
+    getCollectionMovies(normalizedUrl)(dispatch);
   }, [params, dispatch]);
 
   const handleChangeSorting = (selectedSorting: string): void => {
-    dispatch(resetMovieId());
+    dispatch(resetDynamicScreen());
     const SORTING_VOTE_AVERAGE = 'vote_average';
     const SORTING_RELEASE_DATE = 'release_date';
     const SORTING_VOTE_COUNT = 'vote_count';
@@ -70,7 +70,7 @@ export function CollectionMovies(): JSX.Element {
   };
 
   const handleChangeGenre = (selectedGenre: string): void => {
-    dispatch(resetMovieId());
+    dispatch(resetDynamicScreen());
 
     dispatch(filter(selectedGenre));
   };

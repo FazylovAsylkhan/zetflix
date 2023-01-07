@@ -4,12 +4,12 @@ import classes from './Textarea.module.scss';
 
 interface TextareaProps extends React.HTMLAttributes<HTMLTextAreaElement> {
   value: string;
-  id: string;
   parentClasses?: string;
 }
 
-export function Textarea({ id, onChange, value }: TextareaProps): JSX.Element {
-  const { textarea, parentClasses } = classes;
+export function Textarea(props: TextareaProps): JSX.Element {
+  const { id, onChange, value, parentClasses, onBlur } = props;
+  const { textarea } = classes;
 
   return (
     <textarea
@@ -17,6 +17,7 @@ export function Textarea({ id, onChange, value }: TextareaProps): JSX.Element {
       className={joinClasses(parentClasses, textarea)}
       onChange={onChange}
       value={value}
+      onBlur={onBlur}
     />
   );
 }

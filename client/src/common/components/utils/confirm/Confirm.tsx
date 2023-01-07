@@ -10,12 +10,11 @@ interface IMessage {
 interface ConfirmProps {
   message: IMessage;
   handlerButtonClose: () => void;
+  onConfirm: () => void;
 }
 
-export function Confirm({
-  message,
-  handlerButtonClose,
-}: ConfirmProps): JSX.Element {
+export function Confirm(props: ConfirmProps): JSX.Element {
+  const { message, handlerButtonClose, onConfirm } = props;
   const { confirm, modal, h2, textDescription, button } = classes;
   const { title, description, textButton } = message;
 
@@ -28,7 +27,7 @@ export function Confirm({
           {title}
         </H2>
         <p className={textDescription}>{description}</p>
-        <Button parentClasses={button} onClick={handlerButtonClose}>
+        <Button parentClasses={button} onClick={onConfirm}>
           {textButton}
         </Button>
       </Modal>

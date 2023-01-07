@@ -1,6 +1,5 @@
 import React from 'react';
 import { H2, H3, H4, P } from '@common/components';
-import { getValueYearFrom } from '@features/movies/helpers/getValueYearFrom';
 import classes from './Movie.module.scss';
 import { IMovie } from '@features/movies/api';
 import { formateToHoursAndMinutes } from '@features/movies/helpers';
@@ -23,9 +22,9 @@ export function Movie({ data }: MovieProps): JSX.Element {
     budget,
   } = data;
 
-  const year = getValueYearFrom(date);
+  const year = new Date(date).getFullYear();
   const formattedRuntime = formateToHoursAndMinutes(runtime);
-  const formattedBudget = formateBudget(budget);
+  const formattedBudget = budget !== undefined ? formateBudget(budget) : 0;
 
   return (
     <div className={movie}>

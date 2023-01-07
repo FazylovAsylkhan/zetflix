@@ -1,38 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@common/components';
-import { IMovie } from '@features/movies/api';
 import classes from './Form.module.scss';
+import { IFormValues } from '../../models';
+import { arrNamesField } from '../../constants';
 
-interface FormProps {
-  data?: IMovie;
-  children: React.ReactNode;
-  stateButtonReset: {
-    hasData: boolean;
-    setHasData: (state: boolean) => void;
-  };
-  onSubmit: () => void;
+interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  values: IFormValues;
+  handlerResetForm: () => void;
 }
 
-export function Form({
-  onSubmit,
-  children,
-  stateButtonReset,
-}: FormProps): JSX.Element {
-  const { movieForm, controller } = classes;
-  const { hasData, setHasData } = stateButtonReset;
+export function Form(props: FormProps): JSX.Element {
+  const { values, handlerResetForm, onSubmit, children } = props;
+  const { form, controller } = classes;
+  const [hasFilledField, setHasFilledField] = useState(false);
+
+  useEffect(() => {
+    const countOfFilledFiled = arrNamesField.filter(
+      (fieldName) => values[fieldName] !== ''
+    );
+
+    setHasFilledField(countOfFilledFiled.length > 0);
+  }, [values]);
 
   return (
-    <div className={movieForm}>
+    <form className={form} onSubmit={onSubmit}>
       {children}
       <div className={controller}>
-        {hasData && (
-          <Button stylesType="transparent" onClick={() => setHasData(false)}>
+        {hasFilledField && (
+          <Button
+            type="reset"
+            stylesType="transparent"
+            onClick={handlerResetForm}>
             Reset
           </Button>
         )}
-
-        <Button onClick={onSubmit}>submit</Button>
+        <Button type="submit">submit</Button>
       </div>
-    </div>
+    </form>
   );
 }

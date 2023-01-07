@@ -1,42 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
 import { alertMessage } from '@assets/data';
 import { Prompt, Alert } from '@common/components';
-import { IMovie } from '@features/movies/api';
-import { Form } from './components';
-import { FieldsMovie } from './containers';
-import { getFilledDataForFields } from './helpers';
+import { useAppSelector } from '@common/hooks';
+import { getNormalizedParams } from '@common/helpers';
+import { movieValidation } from '@features/movies/lib';
+import {
+  addMovieInCollection,
+  resetFormMovie,
+  selectCardMovie,
+  selectUrlParams,
+} from '@features/movies/services/redux';
+import { getInitialData, getNormalizedData } from './helpers';
+import { IFormValues } from './models';
+import { Fields, Form } from './components';
 
 interface FormMovieProps {
-  movie?: IMovie;
+  title: string;
   handlerButtonClose: () => void;
 }
 
 export function FormMovie({
-  movie,
+  title,
   handlerButtonClose,
 }: FormMovieProps): JSX.Element {
+  const dispatch = useDispatch();
+  const cardMovie = useAppSelector(selectCardMovie);
+  const params = useAppSelector(selectUrlParams);
   const [isShownAlert, setIsShownAlert] = useState(false);
   const isShownFormMovie = !isShownAlert;
 
-  const [dataFields, setDataFields] = useState(getFilledDataForFields(movie));
-  const [hasData, setHasData] = useState(movie !== undefined);
+  const addMovie = async (movieData: IFormValues): Promise<void> => {
+    const normalizedData = getNormalizedData(movieData);
+    const normalizedUrl = getNormalizedParams(
+      params.sortBy,
+      params.sortOrder,
+      params.search,
+      params.searchBy,
+      params.filter,
+      params.limit
+    );
+    await addMovieInCollection(normalizedData, normalizedUrl)(dispatch);
+  };
 
-  useEffect(() => {
-    const notHasData = !hasData;
-    notHasData && setDataFields(getFilledDataForFields());
-  }, [hasData]);
+  const handleSubmit = async (values: IFormValues): Promise<void> => {
+    await addMovie(values);
+    setIsShownAlert(true);
+  };
+
+  const handleResetForm = (): void => {
+    dispatch(resetFormMovie());
+    void formik.setValues(getInitialData());
+  };
+
+  const formik = useFormik({
+    initialValues: getInitialData(cardMovie.formMovie),
+    onSubmit: handleSubmit,
+    validationSchema: movieValidation,
+  });
 
   return (
     <>
       {isShownFormMovie && (
-        <Prompt title="Edit movie" handlerButtonClose={handlerButtonClose}>
+        <Prompt title={title} handlerButtonClose={handlerButtonClose}>
           <Form
-            onSubmit={() => setIsShownAlert(true)}
-            stateButtonReset={{
-              hasData,
-              setHasData,
-            }}>
-            <FieldsMovie dataFields={dataFields} />
+            onSubmit={formik.handleSubmit}
+            values={formik.values}
+            handlerResetForm={() => handleResetForm()}>
+            <Fields
+              fields={{
+                errors: formik.errors,
+                values: formik.values,
+                handlerChange: formik.handleChange,
+                handlerBlur: formik.handleBlur,
+              }}
+              form={{
+                setFieldValue: formik.setFieldValue,
+              }}
+            />
           </Form>
         </Prompt>
       )}
