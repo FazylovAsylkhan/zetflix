@@ -1,8 +1,7 @@
 import React from 'react';
 import { H3, H4 } from '@common/components';
-import { getValueYearFrom } from '@features/movies/helpers';
-import classes from './Card.module.scss';
 import { IMovie } from '@features/movies/api';
+import classes from './Card.module.scss';
 
 interface CardProps {
   children: React.ReactNode;
@@ -24,6 +23,7 @@ export function Card({
     release_date: date,
     poster_path: imageUrl,
   } = dataMovie;
+  const year = new Date(date).getFullYear();
 
   return (
     <div
@@ -43,7 +43,7 @@ export function Card({
           parentClasses={titleCard}>
           {title}
         </H3>
-        <H4 stylesType="rectangle">{getValueYearFrom(date)}</H4>
+        <H4 stylesType="rectangle">{year}</H4>
       </div>
       <H3 stylesType="small">{genres.join(', ')}</H3>
       {children}

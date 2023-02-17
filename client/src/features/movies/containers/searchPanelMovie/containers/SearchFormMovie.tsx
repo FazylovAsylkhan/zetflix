@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SearchForm } from '../components';
 import { useAppDispatch } from '@common/hooks';
-import { search } from '@features/movies/services/store/actions';
+import { search } from '@features/movies/services/redux';
 
 export function SearchFormMovie(): JSX.Element {
   const [value, setValue] = useState('');

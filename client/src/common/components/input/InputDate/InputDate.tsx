@@ -1,47 +1,47 @@
 import React, { useRef, useState } from 'react';
 import { useCatchingEventOutsideElement } from '@common/hooks';
 import { SelectGroup } from './selectGroup';
-import { Input } from '../Input';
 import classes from './InputDate.module.scss';
+import { Button } from '@common/components/button';
+import { Input } from '../Input';
 
 interface InputDateProps {
-  id?: string;
   placeholder?: string;
+  onChange: React.FormEventHandler<HTMLInputElement>;
+  name: string;
   value: string;
-  onChange: (value: string) => void;
+  handlerValueSelectedDate: (date: string) => void;
 }
 
-export function InputDate({
-  id,
-  placeholder,
-  onChange,
-  value,
-}: InputDateProps): JSX.Element {
-  const { inputDate, button, box } = classes;
+export function InputDate(props: InputDateProps): JSX.Element {
+  const { placeholder, onChange, name, value, handlerValueSelectedDate } =
+    props;
+  const { inputDate, box } = classes;
   const [isOpened, setIsOpened] = useState(false);
   const refInputElement = useRef(null);
+
   useCatchingEventOutsideElement('mousedown', refInputElement, () =>
     setIsOpened(false)
   );
 
   return (
-    <form className={inputDate} ref={refInputElement}>
+    <div className={inputDate} ref={refInputElement}>
       <div className={box}>
         <Input
-          id={id}
+          name={name}
           value={value}
           placeholder={placeholder}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            e.preventDefault()
-          }
+          onChange={onChange}
         />
-        <button
-          type="button"
+        <Button
+          id={name}
+          stylesType="date"
           onClick={() => setIsOpened(!isOpened)}
-          className={button}
         />
       </div>
-      {isOpened && <SelectGroup handlerValueSelectedDate={onChange} />}
-    </form>
+      {isOpened && (
+        <SelectGroup handlerValueSelectedDate={handlerValueSelectedDate} />
+      )}
+    </div>
   );
 }

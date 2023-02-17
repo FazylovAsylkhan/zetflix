@@ -31,11 +31,21 @@ function getNumberOfDaysInMonthFrom(m: string, y: string): number {
 export function getCurrentDate(): IDate {
   const [m, d, y] = new Date().toLocaleDateString('en-US').split('/');
 
-  return { m, d, y };
+  return { y, m, d };
+}
+
+function getIsoFormattedValue(n: string): string {
+  const number = Number(n);
+  const isNaturalNumber = number > 0 && number < 10;
+  return isNaturalNumber ? `0${number}` : String(number);
 }
 
 export function getFormattedDate(m: string, d: string, y: string): string {
-  return [getNumericMonth(m), d, y].join('/');
+  return [
+    y,
+    getIsoFormattedValue(getNumericMonth(m)),
+    getIsoFormattedValue(d),
+  ].join('-');
 }
 
 export function getValidatedNameMonth(m: string): string {
