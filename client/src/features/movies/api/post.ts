@@ -1,7 +1,7 @@
 import { BASE_URL } from './constants';
-import { IMovie } from './models';
+import { IMovieEssential } from './models';
 
-export async function postMovie(body: IMovie): Promise<void> {
+export async function postMovie(body: IMovieEssential): Promise<void> {
   await fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     body: JSON.stringify(body),

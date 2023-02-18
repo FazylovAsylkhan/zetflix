@@ -1,15 +1,13 @@
 export { CollectionMoviesActions } from './changingCollectionMovies';
-export { CardMovieActions } from './changingCardMovie';
-export { UrlParamsActions } from './changingUrlParams';
+export { ChangingEditFormMovieActions } from './changingEditFormMovie';
+export { ChangingDetailMovieActions } from './changingDetailMovie';
 
 export type {
-  ICardMovieState,
+  IChangingEditFormMovieState,
   IResetFormMovie,
-  IResetDynamicScreen,
   ISetFormMovie,
-  ISetDynamicScreen,
-  ICardMovieActions,
-} from './changingCardMovie';
+  IChangingEditFormMovieActions,
+} from './changingEditFormMovie';
 
 export type {
   ICollectionMoviesState,
@@ -20,12 +18,10 @@ export type {
 } from './changingCollectionMovies';
 
 export type {
-  IUrlParamsState,
-  ISortBy,
-  ISortOrder,
-  ISearch,
-  ISearchBy,
-  IFilter,
-  ILimit,
-  IUrlParamsActions,
-} from './changingUrlParams';
+  IChangingDetailMovieState,
+  IRequestMovie,
+  ISuccessMovie,
+  IFailureMovie,
+  IResetMovie,
+  IChangingDetailMovieActions,
+} from './changingDetailMovie';

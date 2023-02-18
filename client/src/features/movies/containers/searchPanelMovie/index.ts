@@ -1,1 +1,0 @@
-export { SearchPanelMovie } from './SearchPanelMovie';

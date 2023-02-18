@@ -4,7 +4,7 @@ import classes from './Menu.module.scss';
 
 interface MenuProps {
   menuItems: IMenuItem[];
-  onClickMenuItem: (index: number) => void;
+  onClickMenuItem: (value: string) => void;
 }
 
 export function Menu(props: MenuProps): JSX.Element {
@@ -14,10 +14,10 @@ export function Menu(props: MenuProps): JSX.Element {
   return (
     <nav>
       <ul className={menu}>
-        {menuItems.map((menuItem, index) => (
+        {menuItems.map((menuItem) => (
           <MenuItem
             key={menuItem.value}
-            handlerClick={() => onClickMenuItem(index)}
+            handlerClick={() => onClickMenuItem(menuItem.value)}
             data={menuItem}
           />
         ))}
