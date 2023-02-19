@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@app/store';
 import { confirmDeletingMovieMessage } from '@assets/data';
 import { Confirm, Tooltip } from '@common/components';
 import { scrollUp } from '@common/helpers';
-import { useAppDispatch, useAppSelector } from '@common/hooks';
 import {
   resetFormMovie,
   selectEditFormMovie,

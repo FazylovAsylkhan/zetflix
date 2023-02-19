@@ -29,7 +29,6 @@ export function SearchPage(): JSX.Element {
       />
       <HorizontalRule />
       <CollectionMovies
-        searchQuery={searchQuery}
         stateSearchParams={{
           searchParams,
           updateParams,

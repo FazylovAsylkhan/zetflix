@@ -1,6 +1,6 @@
 import { IMenuGenre } from '../models';
 
-export function addActiveToMenuItem(
+export function toggleMenuItem(
   genres: IMenuGenre[],
   selectedGenre: string
 ): IMenuGenre[] {

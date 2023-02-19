@@ -5,14 +5,13 @@ import { failureMovie, requestMovie, successMovie } from './actionCreators';
 
 export const loadMovie =
   (id: string): ((dispatch: IAppDispatch) => void) =>
-  (dispatch): void => {
+  async (dispatch): Promise<void> => {
     dispatch(requestMovie());
 
-    getMovie(id)
-      .then((response) => {
-        dispatch(successMovie(response));
-      })
-      .catch((reason) => {
-        dispatch(failureMovie(reason as string));
-      });
+    try {
+      const movie = await getMovie(id);
+      dispatch(successMovie(movie));
+    } catch (reason) {
+      dispatch(failureMovie(reason as string));
+    }
   };

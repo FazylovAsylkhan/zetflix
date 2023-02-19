@@ -1,4 +1,4 @@
-import { useAppDispatch } from '@common/hooks';
+import { useAppDispatch } from '@app/store';
 import {
   loadMovies,
   loadMovie,
