@@ -1,5 +1,4 @@
-export interface IMovie {
-  id?: number;
+export interface IMovieEssential {
   budget?: number;
   genres: string[];
   overview: string;
@@ -11,6 +10,10 @@ export interface IMovie {
   runtime: number;
   vote_average: number;
   vote_count?: number;
+}
+
+export interface IMovie extends IMovieEssential {
+  id: number;
 }
 
 export interface IMovies {

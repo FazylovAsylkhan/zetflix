@@ -24,6 +24,7 @@ const config = {
   output: {
     path: outputPath,
     clean: true,
+    publicPath: '/',
   },
   resolve: {
     alias: {
@@ -133,6 +134,7 @@ module.exports = () => {
       open: true,
       port: 3000,
       compress: true,
+      historyApiFallback: true,
     };
 
     config.plugins.push(new BundleAnalyzerPlugin());

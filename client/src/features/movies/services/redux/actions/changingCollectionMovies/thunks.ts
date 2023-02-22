@@ -1,57 +1,17 @@
 /* eslint-disable promise/always-return */
 import { IAppDispatch } from '@app/store';
-import {
-  deleteMovie,
-  getMovies,
-  IMovie,
-  postMovie,
-} from '@features/movies/api';
+import { getMovies } from '@features/movies/api';
 import { failureMovies, requestMovies, successMovies } from './actionCreators';
 
-export const getCollectionMovies =
-  (urlParams: string): ((dispatch: IAppDispatch) => void) =>
-  (dispatch): void => {
+export const loadMovies =
+  (url: string): ((dispatch: IAppDispatch) => void) =>
+  async (dispatch): Promise<void> => {
     dispatch(requestMovies());
 
-    getMovies(urlParams)
-      .then((response) => {
-        dispatch(successMovies(response));
-      })
-      .catch((reason) => {
-        dispatch(failureMovies(reason as string));
-      });
-  };
-
-export function deleteMovieFromCollection(
-  id: string,
-  urlParams: string
-): (dispatch: IAppDispatch) => Promise<void> {
-  return async (dispatch) => {
     try {
-      dispatch(requestMovies());
-      await deleteMovie(id);
-      const response = await getMovies(urlParams);
-
-      dispatch(successMovies(response));
+      const movies = await getMovies(url);
+      dispatch(successMovies(movies));
     } catch (reason) {
       dispatch(failureMovies(reason as string));
     }
   };
-}
-
-export function addMovieInCollection(
-  movie: IMovie,
-  urlParams: string
-): (dispatch: IAppDispatch) => Promise<void> {
-  return async (dispatch) => {
-    try {
-      dispatch(requestMovies());
-      await postMovie(movie);
-      const response = await getMovies(urlParams);
-
-      dispatch(successMovies(response));
-    } catch (reason) {
-      dispatch(failureMovies(reason as string));
-    }
-  };
-}

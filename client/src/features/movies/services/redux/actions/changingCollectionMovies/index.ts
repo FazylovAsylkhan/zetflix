@@ -1,5 +1,1 @@
-export {
-  getCollectionMovies,
-  deleteMovieFromCollection,
-  addMovieInCollection,
-} from './thunks';
+export { loadMovies } from './thunks';

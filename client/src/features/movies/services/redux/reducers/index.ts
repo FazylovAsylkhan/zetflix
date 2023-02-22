@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { changingUrlParamsReducer } from './changingUrlParams';
 import { changingCollectionMoviesReducer } from './changingCollectionMovies';
-import { changingCardMovieReducer } from './changingCardMovie';
+import { changingEditFormMovieReducer } from './changingEditFormMovie';
+import { changingDetailMovieReducer } from './changingDetailMovie';
 
 export const movies = combineReducers({
-  allMovies: changingCollectionMoviesReducer,
-  urlParams: changingUrlParamsReducer,
-  cardMovie: changingCardMovieReducer,
+  collectionMovies: changingCollectionMoviesReducer,
+  editFormMovie: changingEditFormMovieReducer,
+  detailMovie: changingDetailMovieReducer,
 });

@@ -1,1 +1,0 @@
-export { HeaderMovie } from './HeaderMovie';

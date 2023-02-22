@@ -1,17 +1,13 @@
 export { movies } from './reducers';
 export {
-  getCollectionMovies,
-  sortBy,
-  sortOrder,
-  search,
-  searchBy,
-  filter,
-  limit,
+  loadMovies,
   resetFormMovie,
   setFormMovie,
-  resetDynamicScreen,
-  setDynamicScreen,
-  deleteMovieFromCollection,
-  addMovieInCollection,
+  loadMovie,
+  removeMovie,
 } from './actions';
-export { selectAllMovies, selectCardMovie, selectUrlParams } from './selectors';
+export {
+  selectCollectionMovies,
+  selectEditFormMovie,
+  selectDetailMovie,
+} from './selectors';

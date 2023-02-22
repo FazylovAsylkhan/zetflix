@@ -1,15 +1,18 @@
 import { IRootState } from '@app/store';
 import {
-  ICardMovieState,
+  IChangingEditFormMovieState,
   ICollectionMoviesState,
-  IUrlParamsState,
+  IChangingDetailMovieState,
 } from '../models';
 
-export const selectAllMovies = (state: IRootState): ICollectionMoviesState =>
-  state.movies.allMovies;
+export const selectCollectionMovies = (
+  state: IRootState
+): ICollectionMoviesState => state.movies.collectionMovies;
 
-export const selectCardMovie = (state: IRootState): ICardMovieState =>
-  state.movies.cardMovie;
+export const selectEditFormMovie = (
+  state: IRootState
+): IChangingEditFormMovieState => state.movies.editFormMovie;
 
-export const selectUrlParams = (state: IRootState): IUrlParamsState =>
-  state.movies.urlParams;
+export const selectDetailMovie = (
+  state: IRootState
+): IChangingDetailMovieState => state.movies.detailMovie;

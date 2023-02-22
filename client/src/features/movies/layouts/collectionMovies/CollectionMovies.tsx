@@ -1,79 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { SidebarMovie, CardsMovie } from '@features/movies/containers';
-import { Collection, TotalCount } from './components';
-import {
-  filter,
-  sortBy,
-  selectAllMovies,
-  resetDynamicScreen,
-  getCollectionMovies,
-  selectUrlParams,
-} from '@features/movies/services/redux';
+import React from 'react';
+import { useAppSelector } from '@app/store';
+import { selectCollectionMovies } from '@features/movies/services/redux';
 import { Loader } from '@common/components';
-import { SelectOptions } from '@features/movies/containers/sidebarMovie';
-import { useAppDispatch, useAppSelector } from '@common/hooks';
-import { getNormalizedParams } from '@common/helpers';
-import { ICardMovie } from '@features/movies/containers/cardsMovie';
 
-export function CollectionMovies(): JSX.Element {
-  const dispatch = useAppDispatch();
-  const params = useAppSelector(selectUrlParams);
-  const { response, isFetching, error } = useAppSelector(selectAllMovies);
+import { Collection, TotalCount } from './components';
+import { CardsMovie, SidebarMovie } from './containers';
 
-  const [cardsMovies, setCardsMovies] = useState<ICardMovie[]>([]);
-
-  useEffect(() => {
-    if (response !== null) {
-      const handledMovie = response.data.map((movie) => ({
-        ...movie,
-        stateTooltip: {
-          isShownTooltip: false,
-          isShownListOptions: false,
-        },
-      }));
-      setCardsMovies(handledMovie);
-    }
-  }, [response]);
-
-  useEffect(() => {
-    const normalizedUrl = getNormalizedParams(
-      params.sortBy,
-      params.sortOrder,
-      params.search,
-      params.searchBy,
-      params.filter,
-      params.limit
-    );
-
-    getCollectionMovies(normalizedUrl)(dispatch);
-  }, [params, dispatch]);
-
-  const handleChangeSorting = (selectedSorting: string): void => {
-    dispatch(resetDynamicScreen());
-    const SORTING_VOTE_AVERAGE = 'vote_average';
-    const SORTING_RELEASE_DATE = 'release_date';
-    const SORTING_VOTE_COUNT = 'vote_count';
-
-    switch (selectedSorting) {
-      case SelectOptions.POPULARITY:
-        dispatch(sortBy(SORTING_VOTE_AVERAGE));
-        break;
-      case SelectOptions.VOTE_COUNT:
-        dispatch(sortBy(SORTING_VOTE_COUNT));
-        break;
-      case SelectOptions.BUDGET:
-        dispatch(sortBy(selectedSorting));
-        break;
-      default:
-        dispatch(sortBy(SORTING_RELEASE_DATE));
-    }
+interface CollectionMoviesProps {
+  stateSearchParams: {
+    searchParams: URLSearchParams;
+    updateParams: () => void;
   };
+}
 
-  const handleChangeGenre = (selectedGenre: string): void => {
-    dispatch(resetDynamicScreen());
+export function CollectionMovies(props: CollectionMoviesProps): JSX.Element {
+  const { stateSearchParams } = props;
 
-    dispatch(filter(selectedGenre));
-  };
+  const { response, isFetching, error } = useAppSelector(
+    selectCollectionMovies
+  );
 
   return (
     <>
@@ -81,12 +26,12 @@ export function CollectionMovies(): JSX.Element {
       {isFetching && <Loader isWithBlockingWindow={true} />}
       {response !== null && (
         <Collection>
-          <SidebarMovie
-            onChangeSorting={handleChangeSorting}
-            onChangeGenre={handleChangeGenre}
-          />
+          <SidebarMovie stateSearchParams={stateSearchParams} />
           <TotalCount value={response.totalAmount} />
-          <CardsMovie cardsMovies={cardsMovies} />
+          <CardsMovie
+            data={response.data}
+            stateSearchParams={stateSearchParams}
+          />
         </Collection>
       )}
     </>
